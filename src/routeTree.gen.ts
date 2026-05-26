@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as RicercaRouteImport } from './routes/ricerca'
+import { Route as ProgettiRouteImport } from './routes/progetti'
 import { Route as ChiSonoRouteImport } from './routes/chi-sono'
 import { Route as IndexRouteImport } from './routes/index'
 
 const RicercaRoute = RicercaRouteImport.update({
   id: '/ricerca',
   path: '/ricerca',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProgettiRoute = ProgettiRouteImport.update({
+  id: '/progetti',
+  path: '/progetti',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ChiSonoRoute = ChiSonoRouteImport.update({
@@ -32,30 +38,34 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/chi-sono': typeof ChiSonoRoute
+  '/progetti': typeof ProgettiRoute
   '/ricerca': typeof RicercaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/chi-sono': typeof ChiSonoRoute
+  '/progetti': typeof ProgettiRoute
   '/ricerca': typeof RicercaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/chi-sono': typeof ChiSonoRoute
+  '/progetti': typeof ProgettiRoute
   '/ricerca': typeof RicercaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/chi-sono' | '/ricerca'
+  fullPaths: '/' | '/chi-sono' | '/progetti' | '/ricerca'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/chi-sono' | '/ricerca'
-  id: '__root__' | '/' | '/chi-sono' | '/ricerca'
+  to: '/' | '/chi-sono' | '/progetti' | '/ricerca'
+  id: '__root__' | '/' | '/chi-sono' | '/progetti' | '/ricerca'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ChiSonoRoute: typeof ChiSonoRoute
+  ProgettiRoute: typeof ProgettiRoute
   RicercaRoute: typeof RicercaRoute
 }
 
@@ -66,6 +76,13 @@ declare module '@tanstack/react-router' {
       path: '/ricerca'
       fullPath: '/ricerca'
       preLoaderRoute: typeof RicercaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/progetti': {
+      id: '/progetti'
+      path: '/progetti'
+      fullPath: '/progetti'
+      preLoaderRoute: typeof ProgettiRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/chi-sono': {
@@ -88,6 +105,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ChiSonoRoute: ChiSonoRoute,
+  ProgettiRoute: ProgettiRoute,
   RicercaRoute: RicercaRoute,
 }
 export const routeTree = rootRouteImport
