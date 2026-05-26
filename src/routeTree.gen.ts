@@ -9,9 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as RicercaRouteImport } from './routes/ricerca'
 import { Route as ChiSonoRouteImport } from './routes/chi-sono'
 import { Route as IndexRouteImport } from './routes/index'
 
+const RicercaRoute = RicercaRouteImport.update({
+  id: '/ricerca',
+  path: '/ricerca',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ChiSonoRoute = ChiSonoRouteImport.update({
   id: '/chi-sono',
   path: '/chi-sono',
@@ -26,31 +32,42 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/chi-sono': typeof ChiSonoRoute
+  '/ricerca': typeof RicercaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/chi-sono': typeof ChiSonoRoute
+  '/ricerca': typeof RicercaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/chi-sono': typeof ChiSonoRoute
+  '/ricerca': typeof RicercaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/chi-sono'
+  fullPaths: '/' | '/chi-sono' | '/ricerca'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/chi-sono'
-  id: '__root__' | '/' | '/chi-sono'
+  to: '/' | '/chi-sono' | '/ricerca'
+  id: '__root__' | '/' | '/chi-sono' | '/ricerca'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ChiSonoRoute: typeof ChiSonoRoute
+  RicercaRoute: typeof RicercaRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/ricerca': {
+      id: '/ricerca'
+      path: '/ricerca'
+      fullPath: '/ricerca'
+      preLoaderRoute: typeof RicercaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/chi-sono': {
       id: '/chi-sono'
       path: '/chi-sono'
@@ -71,6 +88,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ChiSonoRoute: ChiSonoRoute,
+  RicercaRoute: RicercaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
