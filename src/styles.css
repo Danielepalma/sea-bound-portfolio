@@ -65,8 +65,25 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --background: oklch(0.985 0.005 240);
+  --foreground: oklch(0.22 0.05 250);
+
+  /* Brand */
+  --navy-900: #061a2e;
+  --navy-800: #0a2540;
+  --navy-700: #0f3460;
+  --navy-600: #1a4a7a;
+  --gold-700: #b08f3a;
+  --gold-500: #C9A84C;
+  --gold-300: #e8c96e;
+  --gold-100: #f5e8c0;
+  --offwhite: #f8f9fb;
+  --ink: #0a2540;
+  --ink-muted: #4a6080;
+  --gradient-navy: linear-gradient(135deg, #0a2540 0%, #0f3460 50%, #1a4a7a 100%);
+  --gradient-gold: linear-gradient(90deg, #b08f3a, #C9A84C, #e8c96e, #C9A84C, #b08f3a);
+  --shadow-soft: 0 10px 30px -12px rgba(10, 37, 64, 0.18);
+  --shadow-card: 0 6px 20px -8px rgba(10, 37, 64, 0.15);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
