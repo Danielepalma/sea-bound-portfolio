@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as RicercaRouteImport } from './routes/ricerca'
 import { Route as ProgettiRouteImport } from './routes/progetti'
+import { Route as DidatticaRouteImport } from './routes/didattica'
 import { Route as ChiSonoRouteImport } from './routes/chi-sono'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -22,6 +23,11 @@ const RicercaRoute = RicercaRouteImport.update({
 const ProgettiRoute = ProgettiRouteImport.update({
   id: '/progetti',
   path: '/progetti',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DidatticaRoute = DidatticaRouteImport.update({
+  id: '/didattica',
+  path: '/didattica',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ChiSonoRoute = ChiSonoRouteImport.update({
@@ -38,12 +44,14 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/chi-sono': typeof ChiSonoRoute
+  '/didattica': typeof DidatticaRoute
   '/progetti': typeof ProgettiRoute
   '/ricerca': typeof RicercaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/chi-sono': typeof ChiSonoRoute
+  '/didattica': typeof DidatticaRoute
   '/progetti': typeof ProgettiRoute
   '/ricerca': typeof RicercaRoute
 }
@@ -51,20 +59,22 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/chi-sono': typeof ChiSonoRoute
+  '/didattica': typeof DidatticaRoute
   '/progetti': typeof ProgettiRoute
   '/ricerca': typeof RicercaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/chi-sono' | '/progetti' | '/ricerca'
+  fullPaths: '/' | '/chi-sono' | '/didattica' | '/progetti' | '/ricerca'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/chi-sono' | '/progetti' | '/ricerca'
-  id: '__root__' | '/' | '/chi-sono' | '/progetti' | '/ricerca'
+  to: '/' | '/chi-sono' | '/didattica' | '/progetti' | '/ricerca'
+  id: '__root__' | '/' | '/chi-sono' | '/didattica' | '/progetti' | '/ricerca'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ChiSonoRoute: typeof ChiSonoRoute
+  DidatticaRoute: typeof DidatticaRoute
   ProgettiRoute: typeof ProgettiRoute
   RicercaRoute: typeof RicercaRoute
 }
@@ -83,6 +93,13 @@ declare module '@tanstack/react-router' {
       path: '/progetti'
       fullPath: '/progetti'
       preLoaderRoute: typeof ProgettiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/didattica': {
+      id: '/didattica'
+      path: '/didattica'
+      fullPath: '/didattica'
+      preLoaderRoute: typeof DidatticaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/chi-sono': {
@@ -105,6 +122,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ChiSonoRoute: ChiSonoRoute,
+  DidatticaRoute: DidatticaRoute,
   ProgettiRoute: ProgettiRoute,
   RicercaRoute: RicercaRoute,
 }
