@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as RicercaRouteImport } from './routes/ricerca'
 import { Route as ProgettiRouteImport } from './routes/progetti'
+import { Route as FormazioneRouteImport } from './routes/formazione'
 import { Route as DidatticaRouteImport } from './routes/didattica'
 import { Route as ChiSonoRouteImport } from './routes/chi-sono'
 import { Route as IndexRouteImport } from './routes/index'
@@ -23,6 +24,11 @@ const RicercaRoute = RicercaRouteImport.update({
 const ProgettiRoute = ProgettiRouteImport.update({
   id: '/progetti',
   path: '/progetti',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FormazioneRoute = FormazioneRouteImport.update({
+  id: '/formazione',
+  path: '/formazione',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DidatticaRoute = DidatticaRouteImport.update({
@@ -45,6 +51,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/chi-sono': typeof ChiSonoRoute
   '/didattica': typeof DidatticaRoute
+  '/formazione': typeof FormazioneRoute
   '/progetti': typeof ProgettiRoute
   '/ricerca': typeof RicercaRoute
 }
@@ -52,6 +59,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/chi-sono': typeof ChiSonoRoute
   '/didattica': typeof DidatticaRoute
+  '/formazione': typeof FormazioneRoute
   '/progetti': typeof ProgettiRoute
   '/ricerca': typeof RicercaRoute
 }
@@ -60,21 +68,42 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/chi-sono': typeof ChiSonoRoute
   '/didattica': typeof DidatticaRoute
+  '/formazione': typeof FormazioneRoute
   '/progetti': typeof ProgettiRoute
   '/ricerca': typeof RicercaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/chi-sono' | '/didattica' | '/progetti' | '/ricerca'
+  fullPaths:
+    | '/'
+    | '/chi-sono'
+    | '/didattica'
+    | '/formazione'
+    | '/progetti'
+    | '/ricerca'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/chi-sono' | '/didattica' | '/progetti' | '/ricerca'
-  id: '__root__' | '/' | '/chi-sono' | '/didattica' | '/progetti' | '/ricerca'
+  to:
+    | '/'
+    | '/chi-sono'
+    | '/didattica'
+    | '/formazione'
+    | '/progetti'
+    | '/ricerca'
+  id:
+    | '__root__'
+    | '/'
+    | '/chi-sono'
+    | '/didattica'
+    | '/formazione'
+    | '/progetti'
+    | '/ricerca'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ChiSonoRoute: typeof ChiSonoRoute
   DidatticaRoute: typeof DidatticaRoute
+  FormazioneRoute: typeof FormazioneRoute
   ProgettiRoute: typeof ProgettiRoute
   RicercaRoute: typeof RicercaRoute
 }
@@ -93,6 +122,13 @@ declare module '@tanstack/react-router' {
       path: '/progetti'
       fullPath: '/progetti'
       preLoaderRoute: typeof ProgettiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/formazione': {
+      id: '/formazione'
+      path: '/formazione'
+      fullPath: '/formazione'
+      preLoaderRoute: typeof FormazioneRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/didattica': {
@@ -123,6 +159,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ChiSonoRoute: ChiSonoRoute,
   DidatticaRoute: DidatticaRoute,
+  FormazioneRoute: FormazioneRoute,
   ProgettiRoute: ProgettiRoute,
   RicercaRoute: RicercaRoute,
 }
