@@ -31,9 +31,9 @@ export const dict = {
     explore: "Esplora le sezioni",
     about_title: "Chi Sono",
     about_lead:
-      "Ricercatore in Sostenibilità dei Trasporti presso ISSNOVA e docente di Navigazione.",
+      "Ricercatore presso la Fondazione Institute for Sustainable Society and Innovation (ISSNOVA) e docente di Navigazione.",
     about_p1:
-      "Sono un Ricercatore in Sostenibilità dei Trasporti presso ISSNOVA e docente di Navigazione. Ho conseguito la Laurea Magistrale (con lode) in Scienze e Tecnologie della Navigazione all'Università degli Studi di Napoli «Parthenope», con specializzazione in MASS — Maritime Autonomous Surface Ships e navigazione a rotta adattiva.",
+      "Sono ricercatore presso la Fondazione Institute for Sustainable Society and Innovation (ISSNOVA) e docente di Navigazione. Ho conseguito la Laurea Magistrale (con lode) in Scienze e Tecnologie della Navigazione all'Università degli Studi di Napoli «Parthenope», con specializzazione in MASS — Maritime Autonomous Surface Ships e navigazione a rotta adattiva.",
     about_p2:
       "Nel percorso accademico ho acquisito competenze avanzate in: elaborazione dati GNSS, telerilevamento, navigazione inerziale e sensor fusion. Ho partecipato a diversi progetti europei nel settore marittimo.",
     skills_label: "Competenze",
@@ -58,11 +58,20 @@ export const dict = {
     teaching_title: "Didattica",
     teaching_role: "Docente di Navigazione",
     teaching_body:
-      "Docente di Navigazione. Formazione di tecnici nel settore dei trasporti marittimi, con attenzione alle competenze tecnico-pratiche e alla cultura nautica.",
+      "Docente di Navigazione presso un Istituto Tecnico Trasporti e Logistica (ITTL). In questo spazio condivido materiali, lezioni e calcolatori interattivi sviluppati per gli studenti.",
+    teaching_intro_short:
+      "Materiali, lezioni e calcolatori interattivi per la didattica della navigazione, della statica della nave e dell'idrostatica.",
     teaching_subjects: "Materie & Aree",
-    teaching_approach_title: "Approccio Didattico",
-    teaching_approach_body:
-      "Lezioni integrate con esempi reali derivati dalla ricerca europea: i risultati dei progetti su MASS, elettrificazione navale e sostenibilità entrano in aula come casi di studio aggiornati.",
+    teaching_materials_title: "Materiali & Lezioni",
+    teaching_materials_lead:
+      "Schede, dispense, esercizi e prove organizzati per argomento. Clicca su un elemento per aprire o scaricare.",
+    teaching_calc_title: "Calcolatori Interattivi",
+    teaching_calc_lead:
+      "Applicazioni web sviluppate per la didattica: si aprono direttamente nel browser, senza installazione.",
+    teaching_open: "Apri",
+    teaching_soon: "Prossimamente",
+    teaching_featured: "Strumento completo",
+    teaching_portfolio_cta: "Vai al portfolio didattico completo",
     education_title: "Formazione",
     education_lead:
       "Percorso accademico all'Università degli Studi di Napoli «Parthenope» e formazione avanzata in gestione ambientale.",
@@ -76,7 +85,7 @@ export const dict = {
     location_label: "Sede",
     affiliation_label: "Affiliazione",
     affiliation_body:
-      "ISSNOVA — Istituto Nazionale di Studi sullo Sviluppo delle Organizzazioni Virtuali e dell'Innovazione.",
+      "ISSNOVA — Fondazione Institute for Sustainable Society and Innovation. Ricercatore in sostenibilità dei trasporti.",
     bio_card_title: "Bio",
     lang_switch: "EN",
   },
@@ -100,9 +109,9 @@ export const dict = {
     explore: "Explore the sections",
     about_title: "About Me",
     about_lead:
-      "Researcher in Transport Sustainability at ISSNOVA and Navigation teacher.",
+      "Researcher at the Fondazione Institute for Sustainable Society and Innovation (ISSNOVA) and Navigation teacher.",
     about_p1:
-      "I am a Researcher in Transport Sustainability at ISSNOVA and a Navigation teacher. I earned my M.Sc. (cum laude) in Navigation Sciences and Technologies at the University of Naples «Parthenope», specializing in MASS — Maritime Autonomous Surface Ships and adaptive routing.",
+      "I am a researcher at the Fondazione Institute for Sustainable Society and Innovation (ISSNOVA) and a Navigation teacher. I earned my M.Sc. (cum laude) in Navigation Sciences and Technologies at the University of Naples «Parthenope», specializing in MASS — Maritime Autonomous Surface Ships and adaptive routing.",
     about_p2:
       "My academic path covers GNSS data processing, remote sensing, inertial navigation, and sensor fusion. I have contributed to several European research projects in the maritime sector.",
     skills_label: "Skills",
@@ -127,11 +136,20 @@ export const dict = {
     teaching_title: "Teaching",
     teaching_role: "Navigation Teacher",
     teaching_body:
-      "Navigation teacher. Training of technicians in the maritime transport sector, focused on technical-practical skills and nautical culture.",
+      "Navigation teacher at an Italian Istituto Tecnico Trasporti e Logistica (ITTL). Here I share materials, lessons and interactive calculators built for students.",
+    teaching_intro_short:
+      "Materials, lessons and interactive calculators for navigation, ship statics and hydrostatics.",
     teaching_subjects: "Subjects & Areas",
-    teaching_approach_title: "Teaching Approach",
-    teaching_approach_body:
-      "Lessons integrated with real examples from European research: outcomes from MASS, vessel electrification and sustainability projects enter the classroom as up-to-date case studies.",
+    teaching_materials_title: "Materials & Lessons",
+    teaching_materials_lead:
+      "Sheets, handouts, exercises and tests grouped by topic. Click an item to open or download.",
+    teaching_calc_title: "Interactive Calculators",
+    teaching_calc_lead:
+      "Web apps built for teaching: they open right in the browser, no install needed.",
+    teaching_open: "Open",
+    teaching_soon: "Coming soon",
+    teaching_featured: "Full toolkit",
+    teaching_portfolio_cta: "Visit the full teaching portfolio",
     education_title: "Education",
     education_lead:
       "Academic path at the University of Naples «Parthenope» and advanced training in environmental management.",
@@ -145,7 +163,7 @@ export const dict = {
     location_label: "Location",
     affiliation_label: "Affiliation",
     affiliation_body:
-      "ISSNOVA — National Institute for Studies on the Development of Virtual Organizations and Innovation.",
+      "ISSNOVA — Fondazione Institute for Sustainable Society and Innovation. Researcher in transport sustainability.",
     bio_card_title: "Bio",
     lang_switch: "IT",
   },
