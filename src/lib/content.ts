@@ -246,3 +246,185 @@ export const skills = [
   "MASS",
   "Environmental Management",
 ];
+
+/* -------------------- TEACHING — materiali & calcolatori -------------------- */
+
+export const PORTFOLIO_BASE = "https://danielepalma.github.io/portfolio-navigazione";
+
+export type MaterialGroup = {
+  title: { it: string; en: string };
+  items: {
+    icon: "pdf" | "xls" | "doc";
+    title: { it: string; en: string };
+    meta: { it: string; en: string };
+    href: string;
+  }[];
+};
+
+export const teachingMaterials: MaterialGroup[] = [
+  {
+    title: { it: "Navigazione", en: "Navigation" },
+    items: [
+      {
+        icon: "pdf",
+        title: { it: "Navigazione Astronomica — Scheda Operativa", en: "Celestial Navigation — Operational Sheet" },
+        meta: { it: "PDF · Aggiornato 2024", en: "PDF · Updated 2024" },
+        href: `${PORTFOLIO_BASE}/#materiali`,
+      },
+      {
+        icon: "pdf",
+        title: { it: "Esercizi di Rotta e Navigazione Costiera", en: "Route & Coastal Navigation Exercises" },
+        meta: { it: "PDF · 24 esercizi svolti", en: "PDF · 24 worked exercises" },
+        href: `${PORTFOLIO_BASE}/#materiali`,
+      },
+      {
+        icon: "pdf",
+        title: { it: "Carte Nautiche — Guida alla Lettura", en: "Nautical Charts — Reading Guide" },
+        meta: { it: "PDF · Con esercizi pratici", en: "PDF · With practical exercises" },
+        href: `${PORTFOLIO_BASE}/#materiali`,
+      },
+      {
+        icon: "xls",
+        title: { it: "Tabelle di Correzione Magnetica", en: "Magnetic Correction Tables" },
+        meta: { it: "Excel · Aggiornamento annuale", en: "Excel · Yearly update" },
+        href: `${PORTFOLIO_BASE}/#materiali`,
+      },
+    ],
+  },
+  {
+    title: { it: "Statica della Nave & Idrostatica", en: "Ship Statics & Hydrostatics" },
+    items: [
+      {
+        icon: "pdf",
+        title: { it: "Stabilità della Nave — Teoria e Formule", en: "Ship Stability — Theory and Formulas" },
+        meta: { it: "PDF · Dispensa completa", en: "PDF · Full handout" },
+        href: `${PORTFOLIO_BASE}/#materiali`,
+      },
+      {
+        icon: "pdf",
+        title: { it: "Curve Idrostatiche — Interpolazione", en: "Hydrostatic Curves — Interpolation" },
+        meta: { it: "PDF · Con esempi numerici", en: "PDF · With worked examples" },
+        href: `${PORTFOLIO_BASE}/#materiali`,
+      },
+      {
+        icon: "pdf",
+        title: { it: "Spostamento Pesi — Esercizi Svolti", en: "Weight Shifting — Worked Exercises" },
+        meta: { it: "PDF · 18 problemi risolti", en: "PDF · 18 solved problems" },
+        href: `${PORTFOLIO_BASE}/#materiali`,
+      },
+      {
+        icon: "xls",
+        title: { it: "Dati Idrostatici Nave di Riferimento", en: "Reference Vessel Hydrostatic Data" },
+        meta: { it: "Excel · Tabella editabile", en: "Excel · Editable table" },
+        href: `${PORTFOLIO_BASE}/#materiali`,
+      },
+    ],
+  },
+  {
+    title: { it: "Prove & Verifiche", en: "Tests & Assessments" },
+    items: [
+      {
+        icon: "pdf",
+        title: { it: "Simulazione Esame di Stato — Navigazione", en: "State Exam Simulation — Navigation" },
+        meta: { it: "PDF · A.S. 2023/24", en: "PDF · School year 2023/24" },
+        href: `${PORTFOLIO_BASE}/#materiali`,
+      },
+      {
+        icon: "pdf",
+        title: { it: "Verifica Trimestrale — Stabilità", en: "Term Test — Stability" },
+        meta: { it: "PDF · Classi 4ª e 5ª", en: "PDF · 4th and 5th year" },
+        href: `${PORTFOLIO_BASE}/#materiali`,
+      },
+      {
+        icon: "pdf",
+        title: { it: "Compito in Classe — Idrostatica", en: "Class Test — Hydrostatics" },
+        meta: { it: "PDF · Con tabella dati", en: "PDF · With data sheet" },
+        href: `${PORTFOLIO_BASE}/#materiali`,
+      },
+    ],
+  },
+];
+
+export type Calculator = {
+  emoji: string;
+  title: { it: string; en: string };
+  body: { it: string; en: string };
+  tags: string[];
+  href: string;
+  status?: "soon" | "featured";
+};
+
+export const calculators: Calculator[] = [
+  {
+    emoji: "⚓",
+    title: { it: "Calcolatore Statica della Nave", en: "Ship Statics Calculator" },
+    body: {
+      it: "Lo strumento più completo: interpolazione idrostatica, spostamento pesi, GM' e sbandamento, incaglio, free surface effect, allagamento, bunker e formule inverse.",
+      en: "The most complete tool: hydrostatic interpolation, weight shifting, GM' and heeling, grounding, free-surface effect, flooding, bunker and inverse formulas.",
+    },
+    tags: ["Interpolazione", "Spostamento Pesi", "GM'", "Incaglio", "Free Surface", "Allagamento", "Bunker"],
+    href: `${PORTFOLIO_BASE}/calcolatore_statica_della_nave__1_.html`,
+    status: "featured",
+  },
+  {
+    emoji: "🧭",
+    title: { it: "Navigazione Astronomica", en: "Celestial Navigation" },
+    body: {
+      it: "Calcolo della posizione per altezze e azimut di corpi celesti. Sole, Luna e stelle principali.",
+      en: "Position fixing from altitudes and azimuths of celestial bodies. Sun, Moon and main stars.",
+    },
+    tags: ["Altezze", "Azimut", "LAN"],
+    href: `${PORTFOLIO_BASE}/#calcolatori`,
+  },
+  {
+    emoji: "🗺️",
+    title: { it: "Rotte e Distanze", en: "Routes & Distances" },
+    body: {
+      it: "Calcolo di rotte ortodromiche e lossodromiche, distanze, angoli di rotta e coordinate intermedie.",
+      en: "Great-circle and rhumb-line route computation, distances, course angles and intermediate coordinates.",
+    },
+    tags: ["Lossodromica", "Ortodromica", "Coordinate"],
+    href: `${PORTFOLIO_BASE}/#calcolatori`,
+  },
+  {
+    emoji: "🌊",
+    title: { it: "Passaggio Acqua Dolce / Salata", en: "Fresh / Salt Water Transit" },
+    body: {
+      it: "Variazione di immersione e assetto al passaggio tra acque di diversa densità. Calcolo DWA e FWA.",
+      en: "Draft and trim variation between waters of different density. DWA and FWA computation.",
+    },
+    tags: ["DWA", "FWA", "Densità"],
+    href: `${PORTFOLIO_BASE}/calcolatore_statica_della_nave__1_.html`,
+  },
+  {
+    emoji: "⚠️",
+    title: { it: "Simulatore Incaglio", en: "Grounding Simulator" },
+    body: {
+      it: "Reazione di fondo, momento d'incaglio, variazione GM' e operazioni di disincaglio.",
+      en: "Ground reaction, grounding moment, GM' variation and refloating operations.",
+    },
+    tags: ["Reazione fondo", "GM'", "Disincaglio"],
+    href: `${PORTFOLIO_BASE}/calcolatore_statica_della_nave__1_.html`,
+  },
+  {
+    emoji: "⛽",
+    title: { it: "Bunker & Portata Netta", en: "Bunker & Net Deadweight" },
+    body: {
+      it: "Fabbisogno di carburante per il viaggio e capacità di carico utile residua.",
+      en: "Voyage fuel requirement and remaining useful payload.",
+    },
+    tags: ["Autonomia", "Portata", "Consumo"],
+    href: `${PORTFOLIO_BASE}/calcolatore_statica_della_nave__1_.html`,
+  },
+  {
+    emoji: "📡",
+    title: { it: "Meteorologia Nautica", en: "Nautical Meteorology" },
+    body: {
+      it: "Analisi barometrica, previsione locale, scale di Beaufort e Douglas.",
+      en: "Barometric analysis, local forecast, Beaufort and Douglas scales.",
+    },
+    tags: ["Beaufort", "Pressione", "Vento"],
+    href: `${PORTFOLIO_BASE}/#calcolatori`,
+    status: "soon",
+  },
+];
