@@ -1,26 +1,26 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { PortfolioPage } from "@/components/portfolio/PortfolioPage";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Daniele Palma Esposito — Ricercatore e Docente di Navigazione" },
+      {
+        name: "description",
+        content:
+          "Portfolio di Daniele Palma Esposito, ricercatore in sostenibilità dei trasporti presso ISSNOVA e docente di Navigazione all'ITTL. Progetti europei MASS, AENEAS, FLEXSHIP.",
+      },
+      { property: "og:title", content: "Daniele Palma Esposito — Navigazione & Ricerca" },
+      {
+        property: "og:description",
+        content:
+          "Ricercatore in sostenibilità dei trasporti marittimi e docente di Navigazione. Progetti Horizon Europe, GNSS, MASS, Sensor Fusion.",
+      },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
-
 function Index() {
-  return <PlaceholderIndex />;
+  return <PortfolioPage />;
 }
