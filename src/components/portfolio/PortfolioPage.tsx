@@ -122,7 +122,7 @@ export function PortfolioPage() {
               </span>
               <span className="opacity-40">·</span>
               <span className="inline-flex items-center gap-1.5">
-                <Ship size={12} className="text-gold" /> ISSNOVA · ITTL
+                <Ship size={12} className="text-gold" /> ISSNOVA · Docente di Navigazione
               </span>
             </div>
           </motion.div>
@@ -183,15 +183,14 @@ export function PortfolioPage() {
                 />
                 <div className="mt-4 flex flex-wrap gap-2">
                   <span className="pill pill-gold">ISSNOVA</span>
-                  <span className="pill pill-navy">ITTL</span>
+                  <span className="pill pill-navy">Docente di Navigazione</span>
                 </div>
               </div>
               <div className="nautical-card p-6">
                 <CardHeader icon={Anchor} title="Bio" />
                 <p className="text-[15px] leading-relaxed text-ink-muted">
                   Sono un <strong className="text-navy">Ricercatore in Sostenibilità dei Trasporti</strong>{" "}
-                  presso ISSNOVA e docente di Navigazione all&apos;Istituto Tecnico Trasporti e
-                  Logistica (ITTL). Ho conseguito la Laurea Magistrale (con lode) in Scienze e
+                  presso ISSNOVA e docente di Navigazione. Ho conseguito la Laurea Magistrale (con lode) in Scienze e
                   Tecnologie della Navigazione all&apos;Università degli Studi di Napoli
                   &laquo;Parthenope&raquo;, con specializzazione in{" "}
                   <em>MASS — Maritime Autonomous Surface Ships e navigazione a rotta adattiva</em>.
@@ -309,11 +308,10 @@ export function PortfolioPage() {
           {/* DIDATTICA */}
           <Section id="didattica" icon="📚" title="Didattica">
             <div className="nautical-card p-6 md:p-8">
-              <CardHeader icon={BookOpen} title="Docente di Navigazione — ITTL" />
+              <CardHeader icon={BookOpen} title="Docente di Navigazione" />
               <p className="text-[15px] leading-relaxed text-ink-muted">
-                Docente di Navigazione presso l&apos;Istituto Tecnico Trasporti e Logistica (ITTL).
-                Formazione di tecnici nel settore dei trasporti marittimi, con attenzione alle
-                competenze tecnico-pratiche e alla cultura nautica.
+                Docente di Navigazione. Formazione di tecnici nel settore dei trasporti marittimi,
+                con attenzione alle competenze tecnico-pratiche e alla cultura nautica.
               </p>
               <div className="mt-6">
                 <p className="font-display uppercase tracking-wider-2 text-xs text-navy mb-3">
@@ -463,7 +461,7 @@ export function PortfolioPage() {
             Daniele Palma Esposito
           </p>
           <p className="text-white/60">
-            © {new Date().getFullYear()} · Ricercatore ISSNOVA · Docente ITTL
+            © {new Date().getFullYear()} · Ricercatore ISSNOVA · Docente di Navigazione
           </p>
         </div>
       </footer>
