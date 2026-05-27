@@ -72,6 +72,9 @@ export const dict = {
     teaching_soon: "Prossimamente",
     teaching_featured: "Strumento completo",
     teaching_portfolio_cta: "Vai al portfolio didattico completo",
+    teaching_formulari_title: "Formulari di Navigazione",
+    teaching_formulari_lead:
+      "Raccolta di formule essenziali per la navigazione, la statica della nave e l'astronomia nautica.",
     education_title: "Formazione",
     education_lead:
       "Percorso accademico all'Università degli Studi di Napoli «Parthenope» e formazione avanzata in gestione ambientale.",
@@ -150,6 +153,9 @@ export const dict = {
     teaching_soon: "Coming soon",
     teaching_featured: "Full toolkit",
     teaching_portfolio_cta: "Visit the full teaching portfolio",
+    teaching_formulari_title: "Navigation Formularies",
+    teaching_formulari_lead:
+      "Collection of essential formulas for navigation, ship statics and celestial astronomy.",
     education_title: "Education",
     education_lead:
       "Academic path at the University of Naples «Parthenope» and advanced training in environmental management.",

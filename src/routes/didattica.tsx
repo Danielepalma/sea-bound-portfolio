@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { FileText, FileSpreadsheet, ArrowUpRight, Star, Calculator } from "lucide-react";
+import { FileText, FileSpreadsheet, ArrowUpRight, Star, Calculator, Sigma } from "lucide-react";
 import { PageHeader } from "@/components/portfolio/Layout";
 import { useLang } from "@/lib/i18n";
-import { teachingMaterials, calculators, PORTFOLIO_BASE } from "@/lib/content";
+import { teachingMaterials, calculators, formulari, PORTFOLIO_BASE } from "@/lib/content";
 
 export const Route = createFileRoute("/didattica")({
   head: () => ({
@@ -136,6 +136,42 @@ function TeachingPage() {
               </article>
             );
           })}
+        </div>
+      </section>
+
+      {/* FORMULARI */}
+      <section className="mb-14">
+        <div className="mb-6 flex items-start gap-3">
+          <span className="h-10 w-10 rounded-full bg-navy text-gold-light flex items-center justify-center border border-gold shrink-0">
+            <Sigma size={18} />
+          </span>
+          <div>
+            <h3 className="font-display text-xl md:text-2xl text-navy uppercase tracking-wider-2 mb-2">
+              {t("teaching_formulari_title")}
+            </h3>
+            <p className="text-ink-muted text-sm max-w-3xl">{t("teaching_formulari_lead")}</p>
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-5">
+          {formulari.map((g) => (
+            <article key={g.title.it} className="nautical-card p-6">
+              <h4 className="font-display text-base uppercase tracking-wider-2 text-navy mb-4 pb-3 border-b border-gold/30">
+                {g.title[lang]}
+              </h4>
+              <ul className="space-y-4">
+                {g.formulas.map((f) => (
+                  <li key={f.name.it}>
+                    <p className="font-display text-[13px] text-navy mb-1">{f.name[lang]}</p>
+                    <p className="font-mono text-[13px] bg-offwhite border border-gold/30 rounded px-3 py-2 text-navy">
+                      {f.expression}
+                    </p>
+                    <p className="text-[11px] text-ink-muted mt-1 font-mono">{f.legend[lang]}</p>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
         </div>
       </section>
 
