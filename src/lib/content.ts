@@ -158,13 +158,13 @@ export const projects: Record<
     name: "AENEAS",
     logo: aeneasLogo,
     url: "https://www.project-aeneas.eu/",
-    period: { it: "Set 2023 – Gen 2026", en: "Sep 2023 – Jan 2026" },
+    period: { it: "Set 2023 – Gen 2026 · concluso", en: "Sep 2023 – Jan 2026 · completed" },
     sub: {
       it: "innovAtive ENErgy storage systems onboArd vesselS",
       en: "innovAtive ENErgy storage systems onboArd vesselS",
     },
     ref: "EU Horizon GA 101095902 · HORIZON-CL5-2022-D5-01-02",
-    badges: ["horizon", "active"],
+    badges: ["horizon"],
     short: {
       it: "Tre soluzioni di nuova generazione per lo stoccaggio energetico a bordo, per uno shipping parzialmente o totalmente elettrico (TRL 5), tarate su short-sea e vie navigabili interne.",
       en: "Three next-generation on-board energy storage solutions enabling partially or fully electric shipping (TRL 5), tailored for short-sea and inland waterway operations.",
