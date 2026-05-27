@@ -11,6 +11,7 @@ import {
 import appCss from "../styles.css?url";
 import { LangProvider } from "@/lib/i18n";
 import { PortfolioLayout } from "@/components/portfolio/Layout";
+import { AuthProvider } from "@/hooks/use-auth";
 
 function NotFoundComponent() {
   return (
@@ -115,11 +116,13 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <LangProvider>
-        <PortfolioLayout>
-          <Outlet />
-        </PortfolioLayout>
-      </LangProvider>
+      <AuthProvider>
+        <LangProvider>
+          <PortfolioLayout>
+            <Outlet />
+          </PortfolioLayout>
+        </LangProvider>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }
