@@ -363,7 +363,7 @@ export const calculators: Calculator[] = [
       en: "The most complete tool: hydrostatic interpolation, weight shifting, GM' and heeling, grounding, free-surface effect, flooding, bunker and inverse formulas.",
     },
     tags: ["Interpolazione", "Spostamento Pesi", "GM'", "Incaglio", "Free Surface", "Allagamento", "Bunker"],
-    href: `${PORTFOLIO_BASE}/calcolatore_statica_della_nave__1_.html`,
+    href: `/calcolatori/statica-nave.html`,
     status: "featured",
   },
   {
@@ -426,5 +426,135 @@ export const calculators: Calculator[] = [
     tags: ["Beaufort", "Pressione", "Vento"],
     href: `${PORTFOLIO_BASE}/#calcolatori`,
     status: "soon",
+  },
+];
+
+/* -------------------- FORMULARI DI NAVIGAZIONE -------------------- */
+
+export type FormularySection = {
+  title: { it: string; en: string };
+  formulas: {
+    name: { it: string; en: string };
+    expression: string;
+    legend: { it: string; en: string };
+  }[];
+};
+
+export const formulari: FormularySection[] = [
+  {
+    title: { it: "Rotta e Velocità", en: "Course & Speed" },
+    formulas: [
+      {
+        name: { it: "Spazio percorso", en: "Distance run" },
+        expression: "M = V · t",
+        legend: {
+          it: "M = miglia · V = velocità (nodi) · t = tempo (ore)",
+          en: "M = miles · V = speed (knots) · t = time (hours)",
+        },
+      },
+      {
+        name: { it: "Velocità media", en: "Average speed" },
+        expression: "V = M / t",
+        legend: { it: "in nodi (kn)", en: "in knots (kn)" },
+      },
+      {
+        name: { it: "Correzione bussola", en: "Compass correction" },
+        expression: "Rv = Rb + d ± δ",
+        legend: {
+          it: "Rv = rotta vera · Rb = rotta bussola · d = declinazione · δ = deviazione",
+          en: "Rv = true course · Rb = compass course · d = variation · δ = deviation",
+        },
+      },
+    ],
+  },
+  {
+    title: { it: "Lossodromia", en: "Rhumb-line Sailing" },
+    formulas: [
+      {
+        name: { it: "Differenza di latitudine", en: "Difference of latitude" },
+        expression: "Δφ = φ₂ − φ₁",
+        legend: { it: "in primi d'arco", en: "in arc minutes" },
+      },
+      {
+        name: { it: "Allontanamento", en: "Departure" },
+        expression: "A = Δλ · cos(φm)",
+        legend: {
+          it: "φm = latitudine media · Δλ = differenza di longitudine",
+          en: "φm = mean latitude · Δλ = difference of longitude",
+        },
+      },
+      {
+        name: { it: "Rotta lossodromica", en: "Rhumb-line course" },
+        expression: "tan R = A / Δφ",
+        legend: { it: "R = angolo di rotta", en: "R = course angle" },
+      },
+    ],
+  },
+  {
+    title: { it: "Ortodromia", en: "Great-circle Sailing" },
+    formulas: [
+      {
+        name: { it: "Distanza ortodromica", en: "Great-circle distance" },
+        expression: "cos M = sinφ₁·sinφ₂ + cosφ₁·cosφ₂·cosΔλ",
+        legend: { it: "M in gradi · 1° = 60 NM", en: "M in degrees · 1° = 60 NM" },
+      },
+      {
+        name: { it: "Rotta iniziale", en: "Initial course" },
+        expression: "tan Ri = sinΔλ / (cosφ₁·tanφ₂ − sinφ₁·cosΔλ)",
+        legend: { it: "misurata dal Nord vero", en: "measured from true North" },
+      },
+    ],
+  },
+  {
+    title: { it: "Statica & Stabilità", en: "Statics & Stability" },
+    formulas: [
+      {
+        name: { it: "Spostamento pesi (sbandamento)", en: "Weight shift (heel)" },
+        expression: "tan θ = (p · d) / (D · GM')",
+        legend: {
+          it: "p = peso · d = braccio · D = dislocamento · GM' = metacentrica corretta",
+          en: "p = weight · d = arm · D = displacement · GM' = corrected metacentric height",
+        },
+      },
+      {
+        name: { it: "Free Surface Effect", en: "Free Surface Effect" },
+        expression: "GG₀ = (i · ρl) / D",
+        legend: {
+          it: "i = momento d'inerzia · ρl = densità liquido",
+          en: "i = moment of inertia · ρl = liquid density",
+        },
+      },
+      {
+        name: { it: "Passaggio acqua dolce/salata", en: "Fresh / salt water transit" },
+        expression: "FWA = D / (4 · TPC)",
+        legend: {
+          it: "FWA in mm · D in t · TPC = tonnellate per cm",
+          en: "FWA in mm · D in t · TPC = tonnes per cm",
+        },
+      },
+    ],
+  },
+  {
+    title: { it: "Astronomia Nautica", en: "Celestial Navigation" },
+    formulas: [
+      {
+        name: { it: "Altezza stimata", en: "Computed altitude" },
+        expression: "sin h = sinφ·sinδ + cosφ·cosδ·cosP",
+        legend: {
+          it: "h = altezza · δ = declinazione · P = angolo orario",
+          en: "h = altitude · δ = declination · P = hour angle",
+        },
+      },
+      {
+        name: { it: "Azimut", en: "Azimuth" },
+        expression: "tan Z = sinP / (sinφ·cosP − cosφ·tanδ)",
+        legend: { it: "Z = azimut astronomico", en: "Z = celestial azimuth" },
+      },
+      {
+        name: { it: "Latitudine alla meridiana", en: "Latitude at meridian passage" },
+        expression: "φ = (90° − h) ± δ",
+        legend: { it: "+ se astro a Sud · − se a Nord", en: "+ if body to S · − if to N" },
+      },
+    ],
   },
 ];
