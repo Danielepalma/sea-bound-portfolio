@@ -10,7 +10,6 @@ import {
   Mail,
   User,
   ArrowRight,
-  Anchor,
 } from "lucide-react";
 import { useLang } from "@/lib/i18n";
 
