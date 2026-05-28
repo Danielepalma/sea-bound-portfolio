@@ -9,39 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as RicercaRouteImport } from './routes/ricerca'
-import { Route as ProgettiRouteImport } from './routes/progetti'
 import { Route as LoginRouteImport } from './routes/login'
-import { Route as FormazioneRouteImport } from './routes/formazione'
-import { Route as DidatticaRouteImport } from './routes/didattica'
 import { Route as ContattiRouteImport } from './routes/contatti'
 import { Route as ChiSonoRouteImport } from './routes/chi-sono'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ChiSonoIndexRouteImport } from './routes/chi-sono.index'
+import { Route as ChiSonoProgettiRouteImport } from './routes/chi-sono.progetti'
+import { Route as ChiSonoFormazioneRouteImport } from './routes/chi-sono.formazione'
 
-const RicercaRoute = RicercaRouteImport.update({
-  id: '/ricerca',
-  path: '/ricerca',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProgettiRoute = ProgettiRouteImport.update({
-  id: '/progetti',
-  path: '/progetti',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FormazioneRoute = FormazioneRouteImport.update({
-  id: '/formazione',
-  path: '/formazione',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DidatticaRoute = DidatticaRouteImport.update({
-  id: '/didattica',
-  path: '/didattica',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContattiRoute = ContattiRouteImport.update({
@@ -64,40 +43,51 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ChiSonoIndexRoute = ChiSonoIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ChiSonoRoute,
+} as any)
+const ChiSonoProgettiRoute = ChiSonoProgettiRouteImport.update({
+  id: '/progetti',
+  path: '/progetti',
+  getParentRoute: () => ChiSonoRoute,
+} as any)
+const ChiSonoFormazioneRoute = ChiSonoFormazioneRouteImport.update({
+  id: '/formazione',
+  path: '/formazione',
+  getParentRoute: () => ChiSonoRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
-  '/chi-sono': typeof ChiSonoRoute
+  '/chi-sono': typeof ChiSonoRouteWithChildren
   '/contatti': typeof ContattiRoute
-  '/didattica': typeof DidatticaRoute
-  '/formazione': typeof FormazioneRoute
   '/login': typeof LoginRoute
-  '/progetti': typeof ProgettiRoute
-  '/ricerca': typeof RicercaRoute
+  '/chi-sono/formazione': typeof ChiSonoFormazioneRoute
+  '/chi-sono/progetti': typeof ChiSonoProgettiRoute
+  '/chi-sono/': typeof ChiSonoIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
-  '/chi-sono': typeof ChiSonoRoute
   '/contatti': typeof ContattiRoute
-  '/didattica': typeof DidatticaRoute
-  '/formazione': typeof FormazioneRoute
   '/login': typeof LoginRoute
-  '/progetti': typeof ProgettiRoute
-  '/ricerca': typeof RicercaRoute
+  '/chi-sono/formazione': typeof ChiSonoFormazioneRoute
+  '/chi-sono/progetti': typeof ChiSonoProgettiRoute
+  '/chi-sono': typeof ChiSonoIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
-  '/chi-sono': typeof ChiSonoRoute
+  '/chi-sono': typeof ChiSonoRouteWithChildren
   '/contatti': typeof ContattiRoute
-  '/didattica': typeof DidatticaRoute
-  '/formazione': typeof FormazioneRoute
   '/login': typeof LoginRoute
-  '/progetti': typeof ProgettiRoute
-  '/ricerca': typeof RicercaRoute
+  '/chi-sono/formazione': typeof ChiSonoFormazioneRoute
+  '/chi-sono/progetti': typeof ChiSonoProgettiRoute
+  '/chi-sono/': typeof ChiSonoIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -106,82 +96,46 @@ export interface FileRouteTypes {
     | '/admin'
     | '/chi-sono'
     | '/contatti'
-    | '/didattica'
-    | '/formazione'
     | '/login'
-    | '/progetti'
-    | '/ricerca'
+    | '/chi-sono/formazione'
+    | '/chi-sono/progetti'
+    | '/chi-sono/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/admin'
-    | '/chi-sono'
     | '/contatti'
-    | '/didattica'
-    | '/formazione'
     | '/login'
-    | '/progetti'
-    | '/ricerca'
+    | '/chi-sono/formazione'
+    | '/chi-sono/progetti'
+    | '/chi-sono'
   id:
     | '__root__'
     | '/'
     | '/admin'
     | '/chi-sono'
     | '/contatti'
-    | '/didattica'
-    | '/formazione'
     | '/login'
-    | '/progetti'
-    | '/ricerca'
+    | '/chi-sono/formazione'
+    | '/chi-sono/progetti'
+    | '/chi-sono/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
-  ChiSonoRoute: typeof ChiSonoRoute
+  ChiSonoRoute: typeof ChiSonoRouteWithChildren
   ContattiRoute: typeof ContattiRoute
-  DidatticaRoute: typeof DidatticaRoute
-  FormazioneRoute: typeof FormazioneRoute
   LoginRoute: typeof LoginRoute
-  ProgettiRoute: typeof ProgettiRoute
-  RicercaRoute: typeof RicercaRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/ricerca': {
-      id: '/ricerca'
-      path: '/ricerca'
-      fullPath: '/ricerca'
-      preLoaderRoute: typeof RicercaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/progetti': {
-      id: '/progetti'
-      path: '/progetti'
-      fullPath: '/progetti'
-      preLoaderRoute: typeof ProgettiRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/login': {
       id: '/login'
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/formazione': {
-      id: '/formazione'
-      path: '/formazione'
-      fullPath: '/formazione'
-      preLoaderRoute: typeof FormazioneRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/didattica': {
-      id: '/didattica'
-      path: '/didattica'
-      fullPath: '/didattica'
-      preLoaderRoute: typeof DidatticaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contatti': {
@@ -212,20 +166,62 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/chi-sono/': {
+      id: '/chi-sono/'
+      path: '/'
+      fullPath: '/chi-sono/'
+      preLoaderRoute: typeof ChiSonoIndexRouteImport
+      parentRoute: typeof ChiSonoRoute
+    }
+    '/chi-sono/progetti': {
+      id: '/chi-sono/progetti'
+      path: '/progetti'
+      fullPath: '/chi-sono/progetti'
+      preLoaderRoute: typeof ChiSonoProgettiRouteImport
+      parentRoute: typeof ChiSonoRoute
+    }
+    '/chi-sono/formazione': {
+      id: '/chi-sono/formazione'
+      path: '/formazione'
+      fullPath: '/chi-sono/formazione'
+      preLoaderRoute: typeof ChiSonoFormazioneRouteImport
+      parentRoute: typeof ChiSonoRoute
+    }
   }
 }
+
+interface ChiSonoRouteChildren {
+  ChiSonoFormazioneRoute: typeof ChiSonoFormazioneRoute
+  ChiSonoProgettiRoute: typeof ChiSonoProgettiRoute
+  ChiSonoIndexRoute: typeof ChiSonoIndexRoute
+}
+
+const ChiSonoRouteChildren: ChiSonoRouteChildren = {
+  ChiSonoFormazioneRoute: ChiSonoFormazioneRoute,
+  ChiSonoProgettiRoute: ChiSonoProgettiRoute,
+  ChiSonoIndexRoute: ChiSonoIndexRoute,
+}
+
+const ChiSonoRouteWithChildren =
+  ChiSonoRoute._addFileChildren(ChiSonoRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
-  ChiSonoRoute: ChiSonoRoute,
+  ChiSonoRoute: ChiSonoRouteWithChildren,
   ContattiRoute: ContattiRoute,
-  DidatticaRoute: DidatticaRoute,
-  FormazioneRoute: FormazioneRoute,
   LoginRoute: LoginRoute,
-  ProgettiRoute: ProgettiRoute,
-  RicercaRoute: RicercaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
