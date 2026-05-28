@@ -32,7 +32,7 @@ function AdminPage() {
   const { lang } = useLang();
   const navigate = useNavigate();
   const [items, setItems] = useState<Material[]>([]);
-  const [area, setArea] = useState("Navigazione");
+  const [area, setArea] = useState("lezioni");
   const [titleIt, setTitleIt] = useState("");
   const [titleEn, setTitleEn] = useState("");
   const [metaIt, setMetaIt] = useState("");
@@ -121,11 +121,10 @@ function AdminPage() {
           <label className="text-xs">
             <span className="block text-navy mb-1">Area</span>
             <select value={area} onChange={(e) => setArea(e.target.value)} className="w-full border border-gold/40 rounded px-3 py-2 bg-offwhite">
-              <option>Navigazione</option>
-              <option>Statica della Nave & Idrostatica</option>
-              <option>Prove & Verifiche</option>
-              <option>Astronomia Nautica</option>
-              <option>Meteorologia</option>
+              <option value="lezioni">Lezioni</option>
+              <option value="appunti">Appunti</option>
+              <option value="calcolatori">Calcolatori</option>
+              <option value="formulari">Formulari</option>
             </select>
           </label>
           <label className="text-xs">

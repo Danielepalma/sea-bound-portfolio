@@ -1,13 +1,14 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import {
-  Anchor,
   Compass,
-  Ship,
-  Satellite,
   BookOpen,
+  FileText,
+  Calculator,
+  Sigma,
   GraduationCap,
   Mail,
+  User,
   ArrowRight,
 } from "lucide-react";
 import { useLang } from "@/lib/i18n";
@@ -35,13 +36,37 @@ export const Route = createFileRoute("/")({
 function Index() {
   const { t } = useLang();
 
-  const cards = [
-    { to: "/chi-sono", icon: Compass, label: t("nav_about"), body: t("about_lead") },
-    { to: "/ricerca", icon: Satellite, label: t("nav_research"), body: t("research_lead") },
-    { to: "/progetti", icon: Anchor, label: t("nav_projects"), body: t("projects_lead") },
-    { to: "/didattica", icon: BookOpen, label: t("nav_teaching"), body: t("teaching_body") },
-    { to: "/formazione", icon: GraduationCap, label: t("nav_education"), body: t("education_lead") },
-    { to: "/contatti", icon: Mail, label: t("nav_contact"), body: t("contact_lead") },
+  const teachingCards = [
+    {
+      to: "/didattica/lezioni",
+      icon: BookOpen,
+      label: t("nav_lessons"),
+      body: t("teaching_materials_lead"),
+    },
+    {
+      to: "/didattica/appunti",
+      icon: FileText,
+      label: t("nav_notes"),
+      body: t("teaching_materials_lead"),
+    },
+    {
+      to: "/didattica/calcolatori",
+      icon: Calculator,
+      label: t("nav_calculators"),
+      body: t("teaching_calc_lead"),
+    },
+    {
+      to: "/didattica/formulari",
+      icon: Sigma,
+      label: t("nav_formularies"),
+      body: t("teaching_formulari_lead"),
+    },
+  ] as const;
+
+  const secondary = [
+    { to: "/chi-sono", icon: User, label: t("nav_about") },
+    { to: "/cv", icon: GraduationCap, label: t("nav_cv") },
+    { to: "/contatti", icon: Mail, label: t("nav_contact") },
   ] as const;
 
   return (
@@ -53,17 +78,25 @@ function Index() {
         className="bg-navy-gradient text-white rounded-md p-8 md:p-10 mb-10 border border-gold/30 shadow-soft"
       >
         <p className="font-display text-[11px] uppercase tracking-wider-2 text-gold mb-3">
-          <Ship className="inline mr-2" size={14} /> {t("home_intro_title")}
+          <Compass className="inline mr-2" size={14} /> {t("home_students_title")}
         </p>
         <h1 className="font-display text-2xl md:text-4xl text-gold-light mb-4 leading-tight">
-          {t("role")}
+          {t("home_students_title")}
         </h1>
-        <p className="text-white/80 max-w-2xl leading-relaxed">{t("home_intro_body")}</p>
+        <p className="text-white/80 max-w-2xl leading-relaxed mb-6">
+          {t("home_students_body")}
+        </p>
+        <Link
+          to="/didattica/lezioni"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gold-gradient text-navy font-display uppercase tracking-wider-2 text-xs hover:opacity-90 transition"
+        >
+          <BookOpen size={14} /> {t("home_teaching_cta")} <ArrowRight size={12} />
+        </Link>
       </motion.section>
 
-      <h2 className="section-title text-xl mb-6">{t("explore")}</h2>
-      <div className="grid sm:grid-cols-2 gap-5">
-        {cards.map((c, i) => (
+      <h2 className="section-title text-xl mb-6">{t("nav_teaching")}</h2>
+      <div className="grid sm:grid-cols-2 gap-5 mb-12">
+        {teachingCards.map((c, i) => (
           <motion.div
             key={c.to}
             initial={{ opacity: 0, y: 16 }}
@@ -89,6 +122,25 @@ function Index() {
               </span>
             </Link>
           </motion.div>
+        ))}
+      </div>
+
+      <h2 className="section-title text-xl mb-6">{t("home_more")}</h2>
+      <div className="grid sm:grid-cols-3 gap-4">
+        {secondary.map((c) => (
+          <Link
+            key={c.to}
+            to={c.to}
+            className="nautical-card p-4 flex items-center gap-3 hover:-translate-y-0.5 transition-transform"
+          >
+            <span className="h-9 w-9 rounded-full bg-offwhite border border-gold/40 flex items-center justify-center">
+              <c.icon size={16} className="text-gold-700" />
+            </span>
+            <span className="font-display uppercase tracking-wider-2 text-xs text-navy">
+              {c.label}
+            </span>
+            <ArrowRight size={12} className="ml-auto text-gold-700" />
+          </Link>
         ))}
       </div>
     </div>

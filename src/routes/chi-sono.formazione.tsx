@@ -4,13 +4,13 @@ import { PageHeader } from "@/components/portfolio/Layout";
 import { useLang } from "@/lib/i18n";
 import { education } from "@/lib/content";
 
-export const Route = createFileRoute("/formazione")({
+export const Route = createFileRoute("/chi-sono/formazione")({
   head: () => ({
     meta: [
       { title: "Formazione — Università di Napoli «Parthenope»" },
       { name: "description", content: "Percorso accademico in Scienze e Tecnologie della Navigazione, MASS e gestione ambientale." },
       { property: "og:title", content: "Formazione — Daniele Palma Esposito" },
-      { property: "og:description", content: "Percorso accademico universitario e specializzazione in MASS e gestione ambientale." },
+      { property: "og:description", content: "Percorso accademico e specializzazione in MASS e gestione ambientale." },
     ],
   }),
   component: EducationPage,

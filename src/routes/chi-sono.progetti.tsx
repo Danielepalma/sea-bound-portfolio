@@ -4,11 +4,11 @@ import { PageHeader } from "@/components/portfolio/Layout";
 import { useLang } from "@/lib/i18n";
 import { projects } from "@/lib/content";
 
-export const Route = createFileRoute("/progetti")({
+export const Route = createFileRoute("/chi-sono/progetti")({
   head: () => ({
     meta: [
-      { title: "Progetti Europei — AENEAS, FLEXSHIP, OVERHEAT" },
-      { name: "description", content: "Progetti Horizon Europe: AENEAS, FLEXSHIP, OVERHEAT — trasporto marittimo a impatto zero." },
+      { title: "Progetti Europei — AENEAS, FLEXSHIP, OVERHEAT, UnderSec, TRUSTEE" },
+      { name: "description", content: "Progetti Horizon Europe sul trasporto marittimo sostenibile." },
       { property: "og:title", content: "Progetti Europei — Daniele Palma Esposito" },
       { property: "og:description", content: "Progetti Horizon Europe sul trasporto marittimo sostenibile." },
     ],
