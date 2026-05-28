@@ -1,8 +1,8 @@
 import { useState, type ReactNode } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Compass, MapPin, Ship, Menu, X, Globe, Shield } from "lucide-react";
-import profilePhoto from "@/assets/profile.jpg";
+import { Compass, MapPin, Ship, Menu, X, Globe, Shield, ChevronDown } from "lucide-react";
+import logo from "@/assets/logo.png";
 import { useLang } from "@/lib/i18n";
 import { useAuth } from "@/hooks/use-auth";
 
@@ -27,15 +27,32 @@ export function PortfolioLayout({ children }: { children: ReactNode }) {
   const [navOpen, setNavOpen] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
-  const NAV = [
+  type NavItem =
+    | { to: string; label: string }
+    | { label: string; children: { to: string; label: string }[] };
+
+  const NAV: NavItem[] = [
     { to: "/", label: t("nav_home") },
-    { to: "/chi-sono", label: t("nav_about") },
-    { to: "/ricerca", label: t("nav_research") },
-    { to: "/progetti", label: t("nav_projects") },
-    { to: "/didattica", label: t("nav_teaching") },
-    { to: "/formazione", label: t("nav_education") },
+    {
+      label: t("nav_teaching"),
+      children: [
+        { to: "/didattica/lezioni", label: t("nav_lessons") },
+        { to: "/didattica/appunti", label: t("nav_notes") },
+        { to: "/didattica/calcolatori", label: t("nav_calculators") },
+        { to: "/didattica/formulari", label: t("nav_formularies") },
+      ],
+    },
+    {
+      label: t("nav_about"),
+      children: [
+        { to: "/chi-sono", label: t("nav_profile") },
+        { to: "/chi-sono/progetti", label: t("nav_projects") },
+        { to: "/chi-sono/formazione", label: t("nav_education") },
+      ],
+    },
+    { to: "/cv", label: t("nav_cv") },
     { to: "/contatti", label: t("nav_contact") },
-  ] as const;
+  ];
 
   return (
     <div className="min-h-screen">
@@ -49,16 +66,14 @@ export function PortfolioLayout({ children }: { children: ReactNode }) {
             className="shrink-0"
           >
             <Link to="/" className="block">
-              <div className="p-1 rounded-full bg-gold-gradient">
-                <div className="p-1 rounded-full bg-navy-deep">
-                  <img
-                    src={profilePhoto}
-                    alt="Daniele Palma Esposito"
-                    width={144}
-                    height={144}
-                    className="h-28 w-28 md:h-32 md:w-32 rounded-full object-cover"
-                  />
-                </div>
+              <div className="p-1 rounded-full bg-white shadow-soft">
+                <img
+                  src={logo}
+                  alt="Daniele Palma Esposito — logo"
+                  width={144}
+                  height={144}
+                  className="h-28 w-28 md:h-32 md:w-32 rounded-full object-contain"
+                />
               </div>
             </Link>
           </motion.div>
@@ -125,15 +140,22 @@ export function PortfolioLayout({ children }: { children: ReactNode }) {
               {t("sidebar_title")}
             </p>
             <ul className="space-y-1">
-              {NAV.map((n) => {
-                const active = pathname === n.to;
-                return (
+              {NAV.map((n) =>
+                "children" in n ? (
+                  <NavGroup
+                    key={n.label}
+                    label={n.label}
+                    items={n.children}
+                    pathname={pathname}
+                    onNavigate={() => setNavOpen(false)}
+                  />
+                ) : (
                   <li key={n.to}>
                     <Link
                       to={n.to}
                       onClick={() => setNavOpen(false)}
                       className={`block px-3 py-2 rounded text-[12px] font-display uppercase tracking-wider-2 transition ${
-                        active
+                        pathname === n.to
                           ? "bg-gold-gradient text-navy font-semibold"
                           : "text-white/80 hover:text-gold-light hover:bg-white/5"
                       }`}
@@ -141,8 +163,8 @@ export function PortfolioLayout({ children }: { children: ReactNode }) {
                       {n.label}
                     </Link>
                   </li>
-                );
-              })}
+                ),
+              )}
             </ul>
           </nav>
         </aside>
@@ -162,6 +184,60 @@ export function PortfolioLayout({ children }: { children: ReactNode }) {
         </div>
       </footer>
     </div>
+  );
+}
+
+function NavGroup({
+  label,
+  items,
+  pathname,
+  onNavigate,
+}: {
+  label: string;
+  items: { to: string; label: string }[];
+  pathname: string;
+  onNavigate: () => void;
+}) {
+  const anyActive = items.some((i) => pathname === i.to || pathname.startsWith(i.to + "/"));
+  const [open, setOpen] = useState(anyActive);
+  return (
+    <li>
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        className={`w-full flex items-center justify-between px-3 py-2 rounded text-[12px] font-display uppercase tracking-wider-2 transition ${
+          anyActive ? "text-gold-light bg-white/5" : "text-white/80 hover:text-gold-light hover:bg-white/5"
+        }`}
+      >
+        <span>{label}</span>
+        <ChevronDown
+          size={12}
+          className={`transition-transform ${open ? "rotate-180" : ""}`}
+        />
+      </button>
+      {open && (
+        <ul className="mt-1 ml-2 pl-2 border-l border-gold/30 space-y-1">
+          {items.map((i) => {
+            const active = pathname === i.to;
+            return (
+              <li key={i.to}>
+                <Link
+                  to={i.to}
+                  onClick={onNavigate}
+                  className={`block px-3 py-1.5 rounded text-[11px] font-display uppercase tracking-wider-2 transition ${
+                    active
+                      ? "bg-gold-gradient text-navy font-semibold"
+                      : "text-white/70 hover:text-gold-light hover:bg-white/5"
+                  }`}
+                >
+                  {i.label}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </li>
   );
 }
 
