@@ -10,17 +10,28 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as DidatticaRouteImport } from './routes/didattica'
 import { Route as ContattiRouteImport } from './routes/contatti'
 import { Route as ChiSonoRouteImport } from './routes/chi-sono'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DidatticaIndexRouteImport } from './routes/didattica.index'
 import { Route as ChiSonoIndexRouteImport } from './routes/chi-sono.index'
+import { Route as DidatticaLezioniRouteImport } from './routes/didattica.lezioni'
+import { Route as DidatticaFormulariRouteImport } from './routes/didattica.formulari'
+import { Route as DidatticaCalcolatoriRouteImport } from './routes/didattica.calcolatori'
+import { Route as DidatticaAppuntiRouteImport } from './routes/didattica.appunti'
 import { Route as ChiSonoProgettiRouteImport } from './routes/chi-sono.progetti'
 import { Route as ChiSonoFormazioneRouteImport } from './routes/chi-sono.formazione'
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DidatticaRoute = DidatticaRouteImport.update({
+  id: '/didattica',
+  path: '/didattica',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContattiRoute = ContattiRouteImport.update({
@@ -43,10 +54,35 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DidatticaIndexRoute = DidatticaIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DidatticaRoute,
+} as any)
 const ChiSonoIndexRoute = ChiSonoIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => ChiSonoRoute,
+} as any)
+const DidatticaLezioniRoute = DidatticaLezioniRouteImport.update({
+  id: '/lezioni',
+  path: '/lezioni',
+  getParentRoute: () => DidatticaRoute,
+} as any)
+const DidatticaFormulariRoute = DidatticaFormulariRouteImport.update({
+  id: '/formulari',
+  path: '/formulari',
+  getParentRoute: () => DidatticaRoute,
+} as any)
+const DidatticaCalcolatoriRoute = DidatticaCalcolatoriRouteImport.update({
+  id: '/calcolatori',
+  path: '/calcolatori',
+  getParentRoute: () => DidatticaRoute,
+} as any)
+const DidatticaAppuntiRoute = DidatticaAppuntiRouteImport.update({
+  id: '/appunti',
+  path: '/appunti',
+  getParentRoute: () => DidatticaRoute,
 } as any)
 const ChiSonoProgettiRoute = ChiSonoProgettiRouteImport.update({
   id: '/progetti',
@@ -64,10 +100,16 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRoute
   '/chi-sono': typeof ChiSonoRouteWithChildren
   '/contatti': typeof ContattiRoute
+  '/didattica': typeof DidatticaRouteWithChildren
   '/login': typeof LoginRoute
   '/chi-sono/formazione': typeof ChiSonoFormazioneRoute
   '/chi-sono/progetti': typeof ChiSonoProgettiRoute
+  '/didattica/appunti': typeof DidatticaAppuntiRoute
+  '/didattica/calcolatori': typeof DidatticaCalcolatoriRoute
+  '/didattica/formulari': typeof DidatticaFormulariRoute
+  '/didattica/lezioni': typeof DidatticaLezioniRoute
   '/chi-sono/': typeof ChiSonoIndexRoute
+  '/didattica/': typeof DidatticaIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -76,7 +118,12 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/chi-sono/formazione': typeof ChiSonoFormazioneRoute
   '/chi-sono/progetti': typeof ChiSonoProgettiRoute
+  '/didattica/appunti': typeof DidatticaAppuntiRoute
+  '/didattica/calcolatori': typeof DidatticaCalcolatoriRoute
+  '/didattica/formulari': typeof DidatticaFormulariRoute
+  '/didattica/lezioni': typeof DidatticaLezioniRoute
   '/chi-sono': typeof ChiSonoIndexRoute
+  '/didattica': typeof DidatticaIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -84,10 +131,16 @@ export interface FileRoutesById {
   '/admin': typeof AdminRoute
   '/chi-sono': typeof ChiSonoRouteWithChildren
   '/contatti': typeof ContattiRoute
+  '/didattica': typeof DidatticaRouteWithChildren
   '/login': typeof LoginRoute
   '/chi-sono/formazione': typeof ChiSonoFormazioneRoute
   '/chi-sono/progetti': typeof ChiSonoProgettiRoute
+  '/didattica/appunti': typeof DidatticaAppuntiRoute
+  '/didattica/calcolatori': typeof DidatticaCalcolatoriRoute
+  '/didattica/formulari': typeof DidatticaFormulariRoute
+  '/didattica/lezioni': typeof DidatticaLezioniRoute
   '/chi-sono/': typeof ChiSonoIndexRoute
+  '/didattica/': typeof DidatticaIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -96,10 +149,16 @@ export interface FileRouteTypes {
     | '/admin'
     | '/chi-sono'
     | '/contatti'
+    | '/didattica'
     | '/login'
     | '/chi-sono/formazione'
     | '/chi-sono/progetti'
+    | '/didattica/appunti'
+    | '/didattica/calcolatori'
+    | '/didattica/formulari'
+    | '/didattica/lezioni'
     | '/chi-sono/'
+    | '/didattica/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -108,17 +167,28 @@ export interface FileRouteTypes {
     | '/login'
     | '/chi-sono/formazione'
     | '/chi-sono/progetti'
+    | '/didattica/appunti'
+    | '/didattica/calcolatori'
+    | '/didattica/formulari'
+    | '/didattica/lezioni'
     | '/chi-sono'
+    | '/didattica'
   id:
     | '__root__'
     | '/'
     | '/admin'
     | '/chi-sono'
     | '/contatti'
+    | '/didattica'
     | '/login'
     | '/chi-sono/formazione'
     | '/chi-sono/progetti'
+    | '/didattica/appunti'
+    | '/didattica/calcolatori'
+    | '/didattica/formulari'
+    | '/didattica/lezioni'
     | '/chi-sono/'
+    | '/didattica/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -126,6 +196,7 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRoute
   ChiSonoRoute: typeof ChiSonoRouteWithChildren
   ContattiRoute: typeof ContattiRoute
+  DidatticaRoute: typeof DidatticaRouteWithChildren
   LoginRoute: typeof LoginRoute
 }
 
@@ -136,6 +207,13 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/didattica': {
+      id: '/didattica'
+      path: '/didattica'
+      fullPath: '/didattica'
+      preLoaderRoute: typeof DidatticaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contatti': {
@@ -166,12 +244,47 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/didattica/': {
+      id: '/didattica/'
+      path: '/'
+      fullPath: '/didattica/'
+      preLoaderRoute: typeof DidatticaIndexRouteImport
+      parentRoute: typeof DidatticaRoute
+    }
     '/chi-sono/': {
       id: '/chi-sono/'
       path: '/'
       fullPath: '/chi-sono/'
       preLoaderRoute: typeof ChiSonoIndexRouteImport
       parentRoute: typeof ChiSonoRoute
+    }
+    '/didattica/lezioni': {
+      id: '/didattica/lezioni'
+      path: '/lezioni'
+      fullPath: '/didattica/lezioni'
+      preLoaderRoute: typeof DidatticaLezioniRouteImport
+      parentRoute: typeof DidatticaRoute
+    }
+    '/didattica/formulari': {
+      id: '/didattica/formulari'
+      path: '/formulari'
+      fullPath: '/didattica/formulari'
+      preLoaderRoute: typeof DidatticaFormulariRouteImport
+      parentRoute: typeof DidatticaRoute
+    }
+    '/didattica/calcolatori': {
+      id: '/didattica/calcolatori'
+      path: '/calcolatori'
+      fullPath: '/didattica/calcolatori'
+      preLoaderRoute: typeof DidatticaCalcolatoriRouteImport
+      parentRoute: typeof DidatticaRoute
+    }
+    '/didattica/appunti': {
+      id: '/didattica/appunti'
+      path: '/appunti'
+      fullPath: '/didattica/appunti'
+      preLoaderRoute: typeof DidatticaAppuntiRouteImport
+      parentRoute: typeof DidatticaRoute
     }
     '/chi-sono/progetti': {
       id: '/chi-sono/progetti'
@@ -205,11 +318,32 @@ const ChiSonoRouteChildren: ChiSonoRouteChildren = {
 const ChiSonoRouteWithChildren =
   ChiSonoRoute._addFileChildren(ChiSonoRouteChildren)
 
+interface DidatticaRouteChildren {
+  DidatticaAppuntiRoute: typeof DidatticaAppuntiRoute
+  DidatticaCalcolatoriRoute: typeof DidatticaCalcolatoriRoute
+  DidatticaFormulariRoute: typeof DidatticaFormulariRoute
+  DidatticaLezioniRoute: typeof DidatticaLezioniRoute
+  DidatticaIndexRoute: typeof DidatticaIndexRoute
+}
+
+const DidatticaRouteChildren: DidatticaRouteChildren = {
+  DidatticaAppuntiRoute: DidatticaAppuntiRoute,
+  DidatticaCalcolatoriRoute: DidatticaCalcolatoriRoute,
+  DidatticaFormulariRoute: DidatticaFormulariRoute,
+  DidatticaLezioniRoute: DidatticaLezioniRoute,
+  DidatticaIndexRoute: DidatticaIndexRoute,
+}
+
+const DidatticaRouteWithChildren = DidatticaRoute._addFileChildren(
+  DidatticaRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
   ChiSonoRoute: ChiSonoRouteWithChildren,
   ContattiRoute: ContattiRoute,
+  DidatticaRoute: DidatticaRouteWithChildren,
   LoginRoute: LoginRoute,
 }
 export const routeTree = rootRouteImport
