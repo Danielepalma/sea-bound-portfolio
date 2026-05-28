@@ -41,10 +41,7 @@ function Index() {
       to: "/didattica/lezioni",
       icon: BookOpen,
       label: t("nav_lessons"),
-      body:
-        t === undefined
-          ? ""
-          : t("teaching_materials_lead"),
+      body: t("teaching_materials_lead"),
     },
     {
       to: "/didattica/appunti",
