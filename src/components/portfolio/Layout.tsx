@@ -1,9 +1,10 @@
 import { useState, type ReactNode } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Compass, MapPin, Ship, Menu, X, Globe } from "lucide-react";
+import { Compass, MapPin, Ship, Menu, X, Globe, Shield } from "lucide-react";
 import profilePhoto from "@/assets/profile.jpg";
 import { useLang } from "@/lib/i18n";
+import { useAuth } from "@/hooks/use-auth";
 
 function LangToggle() {
   const { lang, setLang, t } = useLang();
@@ -22,6 +23,7 @@ function LangToggle() {
 
 export function PortfolioLayout({ children }: { children: ReactNode }) {
   const { t } = useLang();
+  const { isAdmin } = useAuth();
   const [navOpen, setNavOpen] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
@@ -72,6 +74,14 @@ export function PortfolioLayout({ children }: { children: ReactNode }) {
                 <Compass size={12} /> {t("badge")}
               </span>
               <LangToggle />
+              {isAdmin && (
+                <Link
+                  to="/admin"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gold/60 text-gold-light text-[11px] uppercase tracking-wider-2 font-display hover:bg-white/5 transition"
+                >
+                  <Shield size={12} /> Admin
+                </Link>
+              )}
             </div>
             <Link to="/" className="block">
               <h1 className="font-display text-3xl md:text-5xl text-gold-light leading-tight hover:text-gold transition">
