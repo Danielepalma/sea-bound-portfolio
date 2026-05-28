@@ -366,67 +366,6 @@ export const calculators: Calculator[] = [
     href: `/calcolatori/statica-nave.html`,
     status: "featured",
   },
-  {
-    emoji: "🧭",
-    title: { it: "Navigazione Astronomica", en: "Celestial Navigation" },
-    body: {
-      it: "Calcolo della posizione per altezze e azimut di corpi celesti. Sole, Luna e stelle principali.",
-      en: "Position fixing from altitudes and azimuths of celestial bodies. Sun, Moon and main stars.",
-    },
-    tags: ["Altezze", "Azimut", "LAN"],
-    href: `${PORTFOLIO_BASE}/#calcolatori`,
-  },
-  {
-    emoji: "🗺️",
-    title: { it: "Rotte e Distanze", en: "Routes & Distances" },
-    body: {
-      it: "Calcolo di rotte ortodromiche e lossodromiche, distanze, angoli di rotta e coordinate intermedie.",
-      en: "Great-circle and rhumb-line route computation, distances, course angles and intermediate coordinates.",
-    },
-    tags: ["Lossodromica", "Ortodromica", "Coordinate"],
-    href: `${PORTFOLIO_BASE}/#calcolatori`,
-  },
-  {
-    emoji: "🌊",
-    title: { it: "Passaggio Acqua Dolce / Salata", en: "Fresh / Salt Water Transit" },
-    body: {
-      it: "Variazione di immersione e assetto al passaggio tra acque di diversa densità. Calcolo DWA e FWA.",
-      en: "Draft and trim variation between waters of different density. DWA and FWA computation.",
-    },
-    tags: ["DWA", "FWA", "Densità"],
-    href: `${PORTFOLIO_BASE}/calcolatore_statica_della_nave__1_.html`,
-  },
-  {
-    emoji: "⚠️",
-    title: { it: "Simulatore Incaglio", en: "Grounding Simulator" },
-    body: {
-      it: "Reazione di fondo, momento d'incaglio, variazione GM' e operazioni di disincaglio.",
-      en: "Ground reaction, grounding moment, GM' variation and refloating operations.",
-    },
-    tags: ["Reazione fondo", "GM'", "Disincaglio"],
-    href: `${PORTFOLIO_BASE}/calcolatore_statica_della_nave__1_.html`,
-  },
-  {
-    emoji: "⛽",
-    title: { it: "Bunker & Portata Netta", en: "Bunker & Net Deadweight" },
-    body: {
-      it: "Fabbisogno di carburante per il viaggio e capacità di carico utile residua.",
-      en: "Voyage fuel requirement and remaining useful payload.",
-    },
-    tags: ["Autonomia", "Portata", "Consumo"],
-    href: `${PORTFOLIO_BASE}/calcolatore_statica_della_nave__1_.html`,
-  },
-  {
-    emoji: "📡",
-    title: { it: "Meteorologia Nautica", en: "Nautical Meteorology" },
-    body: {
-      it: "Analisi barometrica, previsione locale, scale di Beaufort e Douglas.",
-      en: "Barometric analysis, local forecast, Beaufort and Douglas scales.",
-    },
-    tags: ["Beaufort", "Pressione", "Vento"],
-    href: `${PORTFOLIO_BASE}/#calcolatori`,
-    status: "soon",
-  },
 ];
 
 /* -------------------- FORMULARI DI NAVIGAZIONE -------------------- */
