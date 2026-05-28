@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as DidatticaRouteImport } from './routes/didattica'
+import { Route as CvRouteImport } from './routes/cv'
 import { Route as ContattiRouteImport } from './routes/contatti'
 import { Route as ChiSonoRouteImport } from './routes/chi-sono'
 import { Route as AdminRouteImport } from './routes/admin'
@@ -32,6 +33,11 @@ const LoginRoute = LoginRouteImport.update({
 const DidatticaRoute = DidatticaRouteImport.update({
   id: '/didattica',
   path: '/didattica',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CvRoute = CvRouteImport.update({
+  id: '/cv',
+  path: '/cv',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContattiRoute = ContattiRouteImport.update({
@@ -100,6 +106,7 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRoute
   '/chi-sono': typeof ChiSonoRouteWithChildren
   '/contatti': typeof ContattiRoute
+  '/cv': typeof CvRoute
   '/didattica': typeof DidatticaRouteWithChildren
   '/login': typeof LoginRoute
   '/chi-sono/formazione': typeof ChiSonoFormazioneRoute
@@ -115,6 +122,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/contatti': typeof ContattiRoute
+  '/cv': typeof CvRoute
   '/login': typeof LoginRoute
   '/chi-sono/formazione': typeof ChiSonoFormazioneRoute
   '/chi-sono/progetti': typeof ChiSonoProgettiRoute
@@ -131,6 +139,7 @@ export interface FileRoutesById {
   '/admin': typeof AdminRoute
   '/chi-sono': typeof ChiSonoRouteWithChildren
   '/contatti': typeof ContattiRoute
+  '/cv': typeof CvRoute
   '/didattica': typeof DidatticaRouteWithChildren
   '/login': typeof LoginRoute
   '/chi-sono/formazione': typeof ChiSonoFormazioneRoute
@@ -149,6 +158,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/chi-sono'
     | '/contatti'
+    | '/cv'
     | '/didattica'
     | '/login'
     | '/chi-sono/formazione'
@@ -164,6 +174,7 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/contatti'
+    | '/cv'
     | '/login'
     | '/chi-sono/formazione'
     | '/chi-sono/progetti'
@@ -179,6 +190,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/chi-sono'
     | '/contatti'
+    | '/cv'
     | '/didattica'
     | '/login'
     | '/chi-sono/formazione'
@@ -196,6 +208,7 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRoute
   ChiSonoRoute: typeof ChiSonoRouteWithChildren
   ContattiRoute: typeof ContattiRoute
+  CvRoute: typeof CvRoute
   DidatticaRoute: typeof DidatticaRouteWithChildren
   LoginRoute: typeof LoginRoute
 }
@@ -214,6 +227,13 @@ declare module '@tanstack/react-router' {
       path: '/didattica'
       fullPath: '/didattica'
       preLoaderRoute: typeof DidatticaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cv': {
+      id: '/cv'
+      path: '/cv'
+      fullPath: '/cv'
+      preLoaderRoute: typeof CvRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contatti': {
@@ -343,6 +363,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRoute,
   ChiSonoRoute: ChiSonoRouteWithChildren,
   ContattiRoute: ContattiRoute,
+  CvRoute: CvRoute,
   DidatticaRoute: DidatticaRouteWithChildren,
   LoginRoute: LoginRoute,
 }
