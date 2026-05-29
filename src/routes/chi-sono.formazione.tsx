@@ -3,6 +3,7 @@ import { GraduationCap, Award, ClipboardList } from "lucide-react";
 import { PageHeader } from "@/components/portfolio/Layout";
 import { useLang } from "@/lib/i18n";
 import { education } from "@/lib/content";
+import { useEditable } from "@/hooks/use-page-content";
 
 export const Route = createFileRoute("/chi-sono/formazione")({
   head: () => ({
@@ -20,10 +21,11 @@ const icons = [GraduationCap, Award, ClipboardList];
 
 function EducationPage() {
   const { t, lang } = useLang();
+  const lead = useEditable("education.lead");
 
   return (
     <div>
-      <PageHeader icon="🎓" title={t("education_title")} lead={t("education_lead")} />
+      <PageHeader icon="🎓" title={t("education_title")} lead={lead} />
 
       <div className="relative pl-8">
         <div className="absolute left-2 top-2 bottom-2 w-[2px] timeline-line rounded" />

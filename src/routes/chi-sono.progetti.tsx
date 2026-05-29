@@ -3,6 +3,7 @@ import { Check, ExternalLink, CalendarDays } from "lucide-react";
 import { PageHeader } from "@/components/portfolio/Layout";
 import { useLang } from "@/lib/i18n";
 import { projects } from "@/lib/content";
+import { useEditable } from "@/hooks/use-page-content";
 
 export const Route = createFileRoute("/chi-sono/progetti")({
   head: () => ({
@@ -26,10 +27,11 @@ function BadgePill({ kind }: { kind: "horizon" | "active" | "project" }) {
 function ProjectsPage() {
   const { t, lang } = useLang();
   const list = Object.values(projects);
+  const lead = useEditable("projects.lead");
 
   return (
     <div>
-      <PageHeader icon="⚓" title={t("projects_title")} lead={t("projects_lead")} />
+      <PageHeader icon="⚓" title={t("projects_title")} lead={lead} />
 
       <div className="space-y-6">
         {list.map((p) => (

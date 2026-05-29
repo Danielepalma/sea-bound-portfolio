@@ -66,15 +66,13 @@ export function PortfolioLayout({ children }: { children: ReactNode }) {
             className="shrink-0"
           >
             <Link to="/" className="block">
-              <div className="p-1 rounded-full bg-white shadow-soft">
-                <img
-                  src={logo}
-                  alt="Daniele Palma Esposito — logo"
-                  width={144}
-                  height={144}
-                  className="h-28 w-28 md:h-32 md:w-32 rounded-full object-contain"
-                />
-              </div>
+              <img
+                src={logo}
+                alt="Daniele Palma Esposito — logo"
+                width={192}
+                height={192}
+                className="h-36 w-36 md:h-44 md:w-44 object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.35)]"
+              />
             </Link>
           </motion.div>
 

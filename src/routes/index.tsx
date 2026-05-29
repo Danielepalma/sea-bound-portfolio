@@ -12,6 +12,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { useLang } from "@/lib/i18n";
+import { useEditable } from "@/hooks/use-page-content";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -35,6 +36,8 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const { t } = useLang();
+  const heroTitle = useEditable("home.hero.title");
+  const heroBody = useEditable("home.hero.body");
 
   const teachingCards = [
     {
@@ -78,13 +81,13 @@ function Index() {
         className="bg-navy-gradient text-white rounded-md p-8 md:p-10 mb-10 border border-gold/30 shadow-soft"
       >
         <p className="font-display text-[11px] uppercase tracking-wider-2 text-gold mb-3">
-          <Compass className="inline mr-2" size={14} /> {t("home_students_title")}
+          <Compass className="inline mr-2" size={14} /> {heroTitle}
         </p>
         <h1 className="font-display text-2xl md:text-4xl text-gold-light mb-4 leading-tight">
-          {t("home_students_title")}
+          {heroTitle}
         </h1>
         <p className="text-white/80 max-w-2xl leading-relaxed mb-6">
-          {t("home_students_body")}
+          {heroBody}
         </p>
         <Link
           to="/didattica/lezioni"
