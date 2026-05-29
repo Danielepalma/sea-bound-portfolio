@@ -4,6 +4,7 @@ import profilePhoto from "@/assets/profile.jpg";
 import { PageHeader } from "@/components/portfolio/Layout";
 import { useLang } from "@/lib/i18n";
 import { skills } from "@/lib/content";
+import { useEditable } from "@/hooks/use-page-content";
 
 export const Route = createFileRoute("/chi-sono/")({
   head: () => ({
@@ -19,9 +20,12 @@ export const Route = createFileRoute("/chi-sono/")({
 
 function AboutPage() {
   const { t } = useLang();
+  const lead = useEditable("about.lead");
+  const p1 = useEditable("about.p1");
+  const p2 = useEditable("about.p2");
   return (
     <div>
-      <PageHeader icon="🧭" title={t("about_title")} lead={t("about_lead")} />
+      <PageHeader icon="🧭" title={t("about_title")} lead={lead} />
 
       <div className="grid md:grid-cols-[1fr_2fr] gap-6">
         <div className="nautical-card p-5">
@@ -47,8 +51,8 @@ function AboutPage() {
               {t("bio_card_title")}
             </h3>
           </div>
-          <p className="text-[15px] leading-relaxed text-ink-muted">{t("about_p1")}</p>
-          <p className="text-[15px] leading-relaxed text-ink-muted mt-3">{t("about_p2")}</p>
+          <p className="text-[15px] leading-relaxed text-ink-muted whitespace-pre-line">{p1}</p>
+          <p className="text-[15px] leading-relaxed text-ink-muted mt-3 whitespace-pre-line">{p2}</p>
 
           <p className="mt-6 font-display uppercase tracking-wider-2 text-xs text-navy mb-3">
             {t("skills_label")}

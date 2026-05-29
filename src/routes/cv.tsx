@@ -3,6 +3,7 @@ import { Download, Mail, Phone, MapPin, Linkedin, ExternalLink } from "lucide-re
 import { PageHeader } from "@/components/portfolio/Layout";
 import { useLang } from "@/lib/i18n";
 import { projects } from "@/lib/content";
+import { useEditable } from "@/hooks/use-page-content";
 
 export const Route = createFileRoute("/cv")({
   head: () => ({
@@ -77,10 +78,15 @@ const publications = [
 
 function CvPage() {
   const { t, lang } = useLang();
+  const lead = useEditable("cv.lead");
+  const profile = useEditable("cv.profile");
+  const email = useEditable("contact.email");
+  const linkedin = useEditable("contact.linkedin");
+  const location = useEditable("contact.location");
 
   return (
     <div>
-      <PageHeader icon="📄" title={t("cv_title")} lead={t("cv_lead")} />
+      <PageHeader icon="📄" title={t("cv_title")} lead={lead} />
 
       {/* Header card */}
       <div className="nautical-card p-6 md:p-8 mb-8">
@@ -101,10 +107,10 @@ function CvPage() {
           </a>
         </div>
         <div className="grid sm:grid-cols-2 gap-2 text-sm text-ink-muted">
-          <span className="inline-flex items-center gap-2"><Mail size={14} className="text-gold-700" /> danielepalmaesposito13@gmail.com</span>
+          <span className="inline-flex items-center gap-2"><Mail size={14} className="text-gold-700" /> {email}</span>
           <span className="inline-flex items-center gap-2"><Phone size={14} className="text-gold-700" /> +39 331 998 0900</span>
-          <span className="inline-flex items-center gap-2"><MapPin size={14} className="text-gold-700" /> Giugliano in Campania, Italia</span>
-          <a href="https://www.linkedin.com/in/daniele-palma-esposito-402055153/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-gold-700 hover:text-navy">
+          <span className="inline-flex items-center gap-2"><MapPin size={14} className="text-gold-700" /> {location}</span>
+          <a href={linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-gold-700 hover:text-navy">
             <Linkedin size={14} /> LinkedIn <ExternalLink size={11} />
           </a>
         </div>
@@ -112,11 +118,7 @@ function CvPage() {
 
       {/* Profilo */}
       <Section title={lang === "it" ? "Profilo" : "Profile"}>
-        <p className="text-[15px] text-ink-muted leading-relaxed">
-          {lang === "it"
-            ? "Maritime Sustainability Researcher presso ISSNOVA, Laurea Magistrale con lode in Scienze e Tecnologie della Navigazione (Parthenope). Specializzazione in Navigazione e Surveying con tesi su Maritime Autonomous Surface Ships (MASS) e routing adattivo. Competenze avanzate in elaborazione dati GNSS, telerilevamento, navigazione inerziale e sensor fusion. Specializzazione in gestione ambientale per la performance navale. Contributi attivi ai progetti europei TRUSTEE, AENEAS, FLEXSHIP, UnderSec e OVERHEAT."
-            : "Maritime Sustainability Researcher at ISSNOVA, M.Sc. (cum laude) in Navigation Sciences and Technologies (Parthenope). Specialised in Navigation and Surveying, thesis on Maritime Autonomous Surface Ships (MASS) and adaptive routing. Advanced skills in GNSS data processing, remote sensing, inertial navigation and sensor fusion. Advanced training in environmental management for vessel performance. Active contributor to EU projects TRUSTEE, AENEAS, FLEXSHIP, UnderSec and OVERHEAT."}
-        </p>
+        <p className="text-[15px] text-ink-muted leading-relaxed whitespace-pre-line">{profile}</p>
       </Section>
 
       {/* Esperienze */}

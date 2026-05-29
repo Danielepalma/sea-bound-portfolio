@@ -1,10 +1,11 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
-import { Trash2, Upload, LogOut, FileText, FileSpreadsheet, ArrowUpRight } from "lucide-react";
+import { Trash2, Upload, LogOut, FileText, FileSpreadsheet, ArrowUpRight, FolderOpen, FileEdit } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/use-auth";
 import { PageHeader } from "@/components/portfolio/Layout";
 import { useLang } from "@/lib/i18n";
+import { AdminContentEditor } from "@/components/portfolio/AdminContentEditor";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({ meta: [{ title: "Admin · Materiali" }] }),
@@ -31,6 +32,7 @@ function AdminPage() {
   const { user, isAdmin, loading, signOut } = useAuth();
   const { lang } = useLang();
   const navigate = useNavigate();
+  const [tab, setTab] = useState<"materials" | "content">("materials");
   const [items, setItems] = useState<Material[]>([]);
   const [area, setArea] = useState("lezioni");
   const [titleIt, setTitleIt] = useState("");
@@ -97,8 +99,8 @@ function AdminPage() {
     <div>
       <PageHeader
         icon="🛠️"
-        title={lang === "it" ? "Gestione materiali" : "Materials management"}
-        lead={lang === "it" ? "Carica, organizza ed elimina i materiali didattici." : "Upload, organise and remove teaching materials."}
+        title={lang === "it" ? "Area amministrazione" : "Admin area"}
+        lead={lang === "it" ? "Gestisci i materiali didattici e i testi del sito." : "Manage teaching materials and site copy."}
       />
 
       <div className="flex justify-between items-center mb-6 text-xs">
@@ -113,6 +115,78 @@ function AdminPage() {
         </div>
       </div>
 
+      <div className="flex gap-2 mb-8 border-b border-gold/30">
+        <button
+          onClick={() => setTab("materials")}
+          className={`px-4 py-2 text-xs font-display uppercase tracking-wider-2 inline-flex items-center gap-2 border-b-2 -mb-px transition ${
+            tab === "materials"
+              ? "border-gold text-navy"
+              : "border-transparent text-ink-muted hover:text-navy"
+          }`}
+        >
+          <FolderOpen size={12} /> {lang === "it" ? "Materiali" : "Materials"}
+        </button>
+        <button
+          onClick={() => setTab("content")}
+          className={`px-4 py-2 text-xs font-display uppercase tracking-wider-2 inline-flex items-center gap-2 border-b-2 -mb-px transition ${
+            tab === "content"
+              ? "border-gold text-navy"
+              : "border-transparent text-ink-muted hover:text-navy"
+          }`}
+        >
+          <FileEdit size={12} /> {lang === "it" ? "Testi pagine" : "Page content"}
+        </button>
+      </div>
+
+      {tab === "content" ? <AdminContentEditor /> : <MaterialsTab
+        items={items}
+        area={area}
+        setArea={setArea}
+        titleIt={titleIt}
+        setTitleIt={setTitleIt}
+        titleEn={titleEn}
+        setTitleEn={setTitleEn}
+        metaIt={metaIt}
+        setMetaIt={setMetaIt}
+        metaEn={metaEn}
+        setMetaEn={setMetaEn}
+        setFile={setFile}
+        submit={submit}
+        remove={remove}
+        busy={busy}
+        err={err}
+        lang={lang}
+      />}
+    </div>
+  );
+}
+
+type MaterialsTabProps = {
+  items: Material[];
+  area: string;
+  setArea: (v: string) => void;
+  titleIt: string;
+  setTitleIt: (v: string) => void;
+  titleEn: string;
+  setTitleEn: (v: string) => void;
+  metaIt: string;
+  setMetaIt: (v: string) => void;
+  metaEn: string;
+  setMetaEn: (v: string) => void;
+  setFile: (f: File | null) => void;
+  submit: (e: FormEvent) => void;
+  remove: (m: Material) => void;
+  busy: boolean;
+  err: string | null;
+  lang: string;
+};
+
+function MaterialsTab({
+  items, area, setArea, titleIt, setTitleIt, titleEn, setTitleEn,
+  metaIt, setMetaIt, metaEn, setMetaEn, setFile, submit, remove, busy, err, lang,
+}: MaterialsTabProps) {
+  return (
+    <div>
       <form onSubmit={submit} className="nautical-card p-6 mb-10 space-y-3">
         <h3 className="font-display uppercase tracking-wider-2 text-sm text-navy mb-2">
           {lang === "it" ? "Nuovo materiale" : "New material"}
