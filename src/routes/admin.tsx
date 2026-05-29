@@ -161,10 +161,30 @@ function AdminPage() {
   );
 }
 
+type MaterialsTabProps = {
+  items: Material[];
+  area: string;
+  setArea: (v: string) => void;
+  titleIt: string;
+  setTitleIt: (v: string) => void;
+  titleEn: string;
+  setTitleEn: (v: string) => void;
+  metaIt: string;
+  setMetaIt: (v: string) => void;
+  metaEn: string;
+  setMetaEn: (v: string) => void;
+  setFile: (f: File | null) => void;
+  submit: (e: FormEvent) => void;
+  remove: (m: Material) => void;
+  busy: boolean;
+  err: string | null;
+  lang: string;
+};
+
 function MaterialsTab({
   items, area, setArea, titleIt, setTitleIt, titleEn, setTitleEn,
   metaIt, setMetaIt, metaEn, setMetaEn, setFile, submit, remove, busy, err, lang,
-}: any) {
+}: MaterialsTabProps) {
   return (
     <div>
       <form onSubmit={submit} className="nautical-card p-6 mb-10 space-y-3">
