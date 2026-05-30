@@ -26,6 +26,7 @@ export const dict = {
     nav_profile: "Profilo",
     nav_lessons: "Lezioni",
     nav_notes: "Appunti",
+    nav_exercises: "Esercitazioni",
     nav_calculators: "Calcolatori",
     nav_formularies: "Formulari",
     home_students_title: "Per gli studenti dell'ITTL",
@@ -81,6 +82,18 @@ export const dict = {
     teaching_materials_title: "Materiali & Lezioni",
     teaching_materials_lead:
       "Schede, dispense, esercizi e prove organizzati per argomento. Clicca su un elemento per aprire o scaricare.",
+    teaching_lessons_lead:
+      "Slide e presentazioni usate in aula, divise per argomento. Materiale di riferimento per seguire le lezioni e ripassare i concetti chiave.",
+    teaching_notes_lead:
+      "Appunti sintetici, schemi e mappe concettuali per studiare e ripassare in autonomia, organizzati per argomento.",
+    teaching_exercises_title: "Esercitazioni",
+    teaching_exercises_lead:
+      "Compiti, esercizi guidati e giochi didattici per mettere in pratica gli argomenti studiati, divisi per argomento.",
+    materials_general_group: "Generale",
+    preview_label: "Anteprima",
+    open_label: "Apri",
+    download_label: "Scarica",
+    no_preview_available: "Anteprima non disponibile per questo formato. Apri o scarica il file.",
     teaching_calc_title: "Calcolatori Interattivi",
     teaching_calc_lead:
       "Applicazioni web sviluppate per la didattica: si aprono direttamente nel browser, senza installazione.",
@@ -123,6 +136,7 @@ export const dict = {
     nav_profile: "Profile",
     nav_lessons: "Lessons",
     nav_notes: "Notes",
+    nav_exercises: "Exercises",
     nav_calculators: "Calculators",
     nav_formularies: "Formularies",
     home_students_title: "For ITTL students",
@@ -178,6 +192,18 @@ export const dict = {
     teaching_materials_title: "Materials & Lessons",
     teaching_materials_lead:
       "Sheets, handouts, exercises and tests grouped by topic. Click an item to open or download.",
+    teaching_lessons_lead:
+      "Slides and presentations used in class, grouped by topic. Reference material to follow lessons and review key concepts.",
+    teaching_notes_lead:
+      "Concise notes, diagrams and concept maps for independent study and review, organized by topic.",
+    teaching_exercises_title: "Exercises",
+    teaching_exercises_lead:
+      "Assignments, guided exercises and educational games to practice what you study, grouped by topic.",
+    materials_general_group: "General",
+    preview_label: "Preview",
+    open_label: "Open",
+    download_label: "Download",
+    no_preview_available: "Preview not available for this format. Open or download the file.",
     teaching_calc_title: "Interactive Calculators",
     teaching_calc_lead:
       "Web apps built for teaching: they open right in the browser, no install needed.",

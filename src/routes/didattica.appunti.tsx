@@ -16,17 +16,13 @@ export const Route = createFileRoute("/didattica/appunti")({
 });
 
 function AppuntiPage() {
-  const { lang } = useLang();
+  const { lang, t } = useLang();
   return (
     <div>
       <PageHeader
         icon="📝"
         title={lang === "it" ? "Appunti" : "Notes"}
-        lead={
-          lang === "it"
-            ? "Dispense, riassunti ed esercizi svolti, organizzati per argomento."
-            : "Handouts, summaries and worked exercises, grouped by topic."
-        }
+        lead={t("teaching_notes_lead")}
       />
       <MaterialsList area="appunti" />
     </div>

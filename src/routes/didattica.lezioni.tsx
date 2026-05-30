@@ -16,17 +16,13 @@ export const Route = createFileRoute("/didattica/lezioni")({
 });
 
 function LezioniPage() {
-  const { lang } = useLang();
+  const { lang, t } = useLang();
   return (
     <div>
       <PageHeader
         icon="📖"
         title={lang === "it" ? "Lezioni" : "Lessons"}
-        lead={
-          lang === "it"
-            ? "Slide, presentazioni e lezioni svolte in classe."
-            : "Slides, presentations and in-class lessons."
-        }
+        lead={t("teaching_lessons_lead")}
       />
       <MaterialsList area="lezioni" />
     </div>

@@ -37,6 +37,7 @@ export function PortfolioLayout({ children }: { children: ReactNode }) {
       label: t("nav_teaching"),
       children: [
         { to: "/didattica/lezioni", label: t("nav_lessons") },
+        { to: "/didattica/esercitazioni", label: t("nav_exercises") },
         { to: "/didattica/appunti", label: t("nav_notes") },
         { to: "/didattica/calcolatori", label: t("nav_calculators") },
         { to: "/didattica/formulari", label: t("nav_formularies") },
@@ -71,7 +72,7 @@ export function PortfolioLayout({ children }: { children: ReactNode }) {
                 alt="Daniele Palma Esposito — logo"
                 width={192}
                 height={192}
-                className="h-36 w-36 md:h-44 md:w-44 object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.35)]"
+                className="h-36 w-36 md:h-44 md:w-44 rounded-full object-cover bg-navy ring-2 ring-gold/60 shadow-[0_4px_18px_rgba(0,0,0,0.45)]"
               />
             </Link>
           </motion.div>
