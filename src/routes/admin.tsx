@@ -22,6 +22,8 @@ type Material = {
   icon: string;
   file_path: string;
   sort_order: number;
+  topic: string | null;
+  topic_order: number;
 };
 
 function publicUrl(path: string) {
@@ -39,6 +41,7 @@ function AdminPage() {
   const [titleEn, setTitleEn] = useState("");
   const [metaIt, setMetaIt] = useState("");
   const [metaEn, setMetaEn] = useState("");
+  const [topic, setTopic] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
@@ -77,10 +80,12 @@ function AdminPage() {
       area, title_it: titleIt, title_en: titleEn || titleIt,
       meta_it: metaIt, meta_en: metaEn || metaIt,
       icon, file_path: path, created_by: user?.id,
+      topic: topic.trim() || null,
     });
     setBusy(false);
     if (insErr) return setErr(insErr.message);
     setTitleIt(""); setTitleEn(""); setMetaIt(""); setMetaEn(""); setFile(null);
+    // keep `topic` and `area` so the admin can upload several items in the same topic in a row
     (document.getElementById("admin-file") as HTMLInputElement | null)!.value = "";
     load();
   };
@@ -150,6 +155,8 @@ function AdminPage() {
         setMetaIt={setMetaIt}
         metaEn={metaEn}
         setMetaEn={setMetaEn}
+        topic={topic}
+        setTopic={setTopic}
         setFile={setFile}
         submit={submit}
         remove={remove}
@@ -173,6 +180,8 @@ type MaterialsTabProps = {
   setMetaIt: (v: string) => void;
   metaEn: string;
   setMetaEn: (v: string) => void;
+  topic: string;
+  setTopic: (v: string) => void;
   setFile: (f: File | null) => void;
   submit: (e: FormEvent) => void;
   remove: (m: Material) => void;
@@ -183,8 +192,11 @@ type MaterialsTabProps = {
 
 function MaterialsTab({
   items, area, setArea, titleIt, setTitleIt, titleEn, setTitleEn,
-  metaIt, setMetaIt, metaEn, setMetaEn, setFile, submit, remove, busy, err, lang,
+  metaIt, setMetaIt, metaEn, setMetaEn, topic, setTopic, setFile, submit, remove, busy, err, lang,
 }: MaterialsTabProps) {
+  const existingTopics = Array.from(
+    new Set(items.filter((m) => m.area === area && m.topic).map((m) => m.topic as string)),
+  ).sort();
   return (
     <div>
       <form onSubmit={submit} className="nautical-card p-6 mb-10 space-y-3">
@@ -196,6 +208,7 @@ function MaterialsTab({
             <span className="block text-navy mb-1">Area</span>
             <select value={area} onChange={(e) => setArea(e.target.value)} className="w-full border border-gold/40 rounded px-3 py-2 bg-offwhite">
               <option value="lezioni">Lezioni</option>
+              <option value="esercitazioni">Esercitazioni</option>
               <option value="appunti">Appunti</option>
               <option value="calcolatori">Calcolatori</option>
               <option value="formulari">Formulari</option>
@@ -204,6 +217,26 @@ function MaterialsTab({
           <label className="text-xs">
             <span className="block text-navy mb-1">File (PDF/Excel/…)</span>
             <input id="admin-file" type="file" required onChange={(e) => setFile(e.target.files?.[0] ?? null)} className="w-full text-xs" />
+          </label>
+          <label className="text-xs sm:col-span-2">
+            <span className="block text-navy mb-1">
+              {lang === "it" ? "Argomento" : "Topic"}{" "}
+              <span className="text-ink-muted">
+                ({lang === "it" ? "raggruppa i file" : "groups files"})
+              </span>
+            </span>
+            <input
+              list={`topics-${area}`}
+              value={topic}
+              onChange={(e) => setTopic(e.target.value)}
+              placeholder={lang === "it" ? "es. Astronomia nautica" : "e.g. Celestial navigation"}
+              className="w-full border border-gold/40 rounded px-3 py-2 bg-offwhite"
+            />
+            <datalist id={`topics-${area}`}>
+              {existingTopics.map((tp) => (
+                <option key={tp} value={tp} />
+              ))}
+            </datalist>
           </label>
           <label className="text-xs">
             <span className="block text-navy mb-1">Titolo (IT) *</span>
@@ -239,7 +272,11 @@ function MaterialsTab({
             </span>
             <div className="flex-1 min-w-0">
               <p className="font-display text-navy text-sm truncate">{m.title_it}</p>
-              <p className="text-[11px] text-ink-muted font-mono">{m.area} · {m.meta_it}</p>
+              <p className="text-[11px] text-ink-muted font-mono">
+                {m.area}
+                {m.topic ? ` · ${m.topic}` : ""}
+                {m.meta_it ? ` · ${m.meta_it}` : ""}
+              </p>
             </div>
             <a href={publicUrl(m.file_path)} target="_blank" rel="noreferrer" className="text-xs text-gold-700 hover:text-navy">
               <ArrowUpRight size={14} />
