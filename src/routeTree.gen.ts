@@ -20,6 +20,7 @@ import { Route as DidatticaIndexRouteImport } from './routes/didattica.index'
 import { Route as ChiSonoIndexRouteImport } from './routes/chi-sono.index'
 import { Route as DidatticaLezioniRouteImport } from './routes/didattica.lezioni'
 import { Route as DidatticaFormulariRouteImport } from './routes/didattica.formulari'
+import { Route as DidatticaEsercitazioniRouteImport } from './routes/didattica.esercitazioni'
 import { Route as DidatticaCalcolatoriRouteImport } from './routes/didattica.calcolatori'
 import { Route as DidatticaAppuntiRouteImport } from './routes/didattica.appunti'
 import { Route as ChiSonoProgettiRouteImport } from './routes/chi-sono.progetti'
@@ -80,6 +81,11 @@ const DidatticaFormulariRoute = DidatticaFormulariRouteImport.update({
   path: '/formulari',
   getParentRoute: () => DidatticaRoute,
 } as any)
+const DidatticaEsercitazioniRoute = DidatticaEsercitazioniRouteImport.update({
+  id: '/esercitazioni',
+  path: '/esercitazioni',
+  getParentRoute: () => DidatticaRoute,
+} as any)
 const DidatticaCalcolatoriRoute = DidatticaCalcolatoriRouteImport.update({
   id: '/calcolatori',
   path: '/calcolatori',
@@ -113,6 +119,7 @@ export interface FileRoutesByFullPath {
   '/chi-sono/progetti': typeof ChiSonoProgettiRoute
   '/didattica/appunti': typeof DidatticaAppuntiRoute
   '/didattica/calcolatori': typeof DidatticaCalcolatoriRoute
+  '/didattica/esercitazioni': typeof DidatticaEsercitazioniRoute
   '/didattica/formulari': typeof DidatticaFormulariRoute
   '/didattica/lezioni': typeof DidatticaLezioniRoute
   '/chi-sono/': typeof ChiSonoIndexRoute
@@ -128,6 +135,7 @@ export interface FileRoutesByTo {
   '/chi-sono/progetti': typeof ChiSonoProgettiRoute
   '/didattica/appunti': typeof DidatticaAppuntiRoute
   '/didattica/calcolatori': typeof DidatticaCalcolatoriRoute
+  '/didattica/esercitazioni': typeof DidatticaEsercitazioniRoute
   '/didattica/formulari': typeof DidatticaFormulariRoute
   '/didattica/lezioni': typeof DidatticaLezioniRoute
   '/chi-sono': typeof ChiSonoIndexRoute
@@ -146,6 +154,7 @@ export interface FileRoutesById {
   '/chi-sono/progetti': typeof ChiSonoProgettiRoute
   '/didattica/appunti': typeof DidatticaAppuntiRoute
   '/didattica/calcolatori': typeof DidatticaCalcolatoriRoute
+  '/didattica/esercitazioni': typeof DidatticaEsercitazioniRoute
   '/didattica/formulari': typeof DidatticaFormulariRoute
   '/didattica/lezioni': typeof DidatticaLezioniRoute
   '/chi-sono/': typeof ChiSonoIndexRoute
@@ -165,6 +174,7 @@ export interface FileRouteTypes {
     | '/chi-sono/progetti'
     | '/didattica/appunti'
     | '/didattica/calcolatori'
+    | '/didattica/esercitazioni'
     | '/didattica/formulari'
     | '/didattica/lezioni'
     | '/chi-sono/'
@@ -180,6 +190,7 @@ export interface FileRouteTypes {
     | '/chi-sono/progetti'
     | '/didattica/appunti'
     | '/didattica/calcolatori'
+    | '/didattica/esercitazioni'
     | '/didattica/formulari'
     | '/didattica/lezioni'
     | '/chi-sono'
@@ -197,6 +208,7 @@ export interface FileRouteTypes {
     | '/chi-sono/progetti'
     | '/didattica/appunti'
     | '/didattica/calcolatori'
+    | '/didattica/esercitazioni'
     | '/didattica/formulari'
     | '/didattica/lezioni'
     | '/chi-sono/'
@@ -292,6 +304,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DidatticaFormulariRouteImport
       parentRoute: typeof DidatticaRoute
     }
+    '/didattica/esercitazioni': {
+      id: '/didattica/esercitazioni'
+      path: '/esercitazioni'
+      fullPath: '/didattica/esercitazioni'
+      preLoaderRoute: typeof DidatticaEsercitazioniRouteImport
+      parentRoute: typeof DidatticaRoute
+    }
     '/didattica/calcolatori': {
       id: '/didattica/calcolatori'
       path: '/calcolatori'
@@ -341,6 +360,7 @@ const ChiSonoRouteWithChildren =
 interface DidatticaRouteChildren {
   DidatticaAppuntiRoute: typeof DidatticaAppuntiRoute
   DidatticaCalcolatoriRoute: typeof DidatticaCalcolatoriRoute
+  DidatticaEsercitazioniRoute: typeof DidatticaEsercitazioniRoute
   DidatticaFormulariRoute: typeof DidatticaFormulariRoute
   DidatticaLezioniRoute: typeof DidatticaLezioniRoute
   DidatticaIndexRoute: typeof DidatticaIndexRoute
@@ -349,6 +369,7 @@ interface DidatticaRouteChildren {
 const DidatticaRouteChildren: DidatticaRouteChildren = {
   DidatticaAppuntiRoute: DidatticaAppuntiRoute,
   DidatticaCalcolatoriRoute: DidatticaCalcolatoriRoute,
+  DidatticaEsercitazioniRoute: DidatticaEsercitazioniRoute,
   DidatticaFormulariRoute: DidatticaFormulariRoute,
   DidatticaLezioniRoute: DidatticaLezioniRoute,
   DidatticaIndexRoute: DidatticaIndexRoute,
@@ -370,3 +391,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

@@ -22,11 +22,7 @@ function LezioniPage() {
       <PageHeader
         icon="📖"
         title={lang === "it" ? "Lezioni" : "Lessons"}
-        lead={
-          lang === "it"
-            ? "Slide, presentazioni e lezioni svolte in classe."
-            : "Slides, presentations and in-class lessons."
-        }
+        lead={useLang().t("teaching_lessons_lead")}
       />
       <MaterialsList area="lezioni" />
     </div>
