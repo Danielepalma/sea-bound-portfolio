@@ -71,7 +71,7 @@ export function PortfolioLayout({ children }: { children: ReactNode }) {
                 alt="Daniele Palma Esposito — logo"
                 width={192}
                 height={192}
-                className="h-36 w-36 md:h-44 md:w-44 object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.35)]"
+                className="h-36 w-36 md:h-44 md:w-44 rounded-full object-cover bg-navy ring-2 ring-gold/60 shadow-[0_4px_18px_rgba(0,0,0,0.45)]"
               />
             </Link>
           </motion.div>
