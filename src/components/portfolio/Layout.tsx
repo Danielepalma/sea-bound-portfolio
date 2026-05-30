@@ -37,6 +37,7 @@ export function PortfolioLayout({ children }: { children: ReactNode }) {
       label: t("nav_teaching"),
       children: [
         { to: "/didattica/lezioni", label: t("nav_lessons") },
+        { to: "/didattica/esercitazioni", label: t("nav_exercises") },
         { to: "/didattica/appunti", label: t("nav_notes") },
         { to: "/didattica/calcolatori", label: t("nav_calculators") },
         { to: "/didattica/formulari", label: t("nav_formularies") },
