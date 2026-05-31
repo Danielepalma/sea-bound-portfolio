@@ -1,69 +1,49 @@
-## 1. Logo
+## Obiettivi
 
-- **Header + homepage**: contenitore quadrato con `rounded-full` + `overflow-hidden` + `object-cover` su `aspect-square`, sfondo navy/oro di cornice. Risultato: cerchio perfetto, nessuna deformazione (object-cover ritaglia il quadrato centrale dell'immagine, non la schiaccia).
-- **Logo allegato**: non risulta un file allegato a questo messaggio. Quando passi alla build mi confermerai se vuoi:
-  (a) caricare ora un nuovo file (lo metto in `src/assets/logo.png` sovrascrivendo l'attuale), oppure
-  (b) tenere il logo già presente forzandolo in forma circolare.
-- **Favicon**: rigenero a partire dallo stesso logo, mascherato a cerchio su sfondo navy 512×512, così la tab Chrome non risulta schiacciata.
+1. **Responsività** — Il layout va in modalità "desktop" solo a partire da 768px (breakpoint `md`); su schermi medi/piccoli ci sono diversi problemi: il logo è enorme (144–176px), il pulsante hamburger è in posizione assoluta e può sovrapporsi al contenuto, il titolo H1 va a 3xl e può fuoriuscire, padding orizzontali fissi a 24px su mobile, sidebar/main gap eccessivo.
+2. **Pagina Formulari** — Rimuovere le tabelle/formule precaricate (provenienti da `src/lib/content.ts → formulari`) e lasciare solo l'elenco dei file caricati tramite admin.
+3. **Miniature dei file** — Ogni materiale caricato deve poter avere un'immagine di anteprima visibile sia nella card pubblica sia nell'elenco admin.
 
-## 2. File per argomento + nuova sezione "Esercitazioni"
+## Cosa fare
 
-Aggiungo il concetto di **argomento (topic)** ai materiali. Migrazione DB:
+### 1. Responsività di `PortfolioLayout`
+- Header: ridurre il logo su schermi piccoli (es. `h-24 w-24` → `sm:h-32 sm:w-32` → `md:h-40 md:w-40`), titolo `text-2xl sm:text-3xl md:text-5xl`, padding `px-4 sm:px-6`, gap ridotto.
+- Hamburger: spostarlo dal posizionamento assoluto a posizionamento in-flow (in alto a destra dentro la barra), così non sovrappone più contenuto e resta cliccabile.
+- Container generale: `max-w-6xl px-4 sm:px-6`, gap `gap-6 md:gap-10`.
+- Footer: layout già flex-col → migliorare allineamenti e text-size.
+- Verificare overflow di tabelle/elenchi: aggiungere `min-w-0` dove serve e `overflow-x-auto` ai blocchi CV/elenchi larghi.
+- Tutto resta basato su Tailwind, nessun cambio di logica.
 
-```text
-materials
-  + topic TEXT NULL              -- es. "Astronomia nautica", "Statica della nave"
-  + topic_order INT DEFAULT 0    -- ordinamento argomenti dentro l'area
+### 2. Pagina `didattica/formulari`
+- Eliminare l'intero blocco `<div className="grid md:grid-cols-2 ...">` che mappa `formulari` da `content.ts`.
+- Eliminare anche il titolo "Formulari caricati" intermedio: la lista `MaterialsList` diventa l'unico contenuto sotto al `PageHeader`.
+- Rimuovere gli import non più usati (`Sigma`, `formulari`).
+- Lasciare `formulari` in `content.ts` invariato (non in uso, ma non rimosso per evitare effetti collaterali).
 
-esercitazioni  → nuovo valore valido per `area` (lezioni | esercitazioni | appunti | calcolatori | formulari)
-```
+### 3. Miniature per i materiali
+- **Database**: aggiungere colonna `thumbnail_path TEXT NULL` alla tabella `materials`.
+- **Admin (`admin.tsx`)**:
+  - Nuovo campo file opzionale "Immagine anteprima (PNG/JPG)" nel form di upload.
+  - Se presente, viene caricato nello stesso bucket `materials` con prefisso `thumbnails/…` e il percorso salvato in `thumbnail_path`.
+  - Nell'elenco dei materiali caricati, mostrare la miniatura (40×40 `object-cover`) al posto dell'icona quando disponibile.
+  - Pulsante "Cambia miniatura" per aggiornarla su un materiale esistente (upload separato, niente edit complesso).
+- **Frontend (`MaterialsList.tsx`)**:
+  - Quando `thumbnail_path` è valorizzato, la card mostra un quadrato 64×64 con l'immagine; altrimenti fallback all'icona attuale.
+  - Auto-anteprima per file immagine: se il file caricato è già un'immagine e non c'è una miniatura esplicita, generare l'URL pubblico del file stesso come miniatura.
+- **Tipi**: aggiornare il tipo locale `Material` nei due file (i tipi Supabase vengono rigenerati automaticamente dopo la migration).
 
-- Nuova rotta `/didattica/esercitazioni` (compiti, giochi, esercizi a tema), aggiunta al sotto-menu Didattica e alla home.
-- `MaterialsList` raggruppa i file per `topic` con titoletto di sezione; i materiali senza topic finiscono in un gruppo "Generale" / "General".
-- Admin: campo `Argomento` (autocomplete dai topic già esistenti per quell'area) nel form di upload + colonna nella lista, con possibilità di editare topic e ordine inline.
+## Modifiche tecniche
 
-## 3. Anteprima file
+- Migration SQL: `ALTER TABLE public.materials ADD COLUMN IF NOT EXISTS thumbnail_path TEXT;` (nessuna nuova RLS: ricade sotto le policy esistenti).
+- Bucket `materials` è già pubblico → nessuna modifica storage.
+- File toccati:
+  - `src/components/portfolio/Layout.tsx` (responsive)
+  - `src/routes/didattica.formulari.tsx` (pulizia)
+  - `src/components/portfolio/MaterialsList.tsx` (miniature lato pubblico)
+  - `src/routes/admin.tsx` (campo miniatura + visualizzazione)
+  - nuova migration SQL
 
-- Nuovo componente `<MaterialPreview>` che apre un modal con:
-  - **PDF** → `<iframe>` dell'URL pubblico (i PDF dello storage Supabase si aprono nativamente nel browser).
-  - **Immagini** (png/jpg/webp) → `<img>` full-width.
-  - **Office / altro** (xls/xlsx/doc/docx) → niente preview inline (i browser non supportano), mostro card con "Apri / Scarica" + link diretto.
-- Nelle card di `MaterialsList` aggiungo l'icona **occhio** "Anteprima" oltre al link "Apri in nuova scheda".
-
-## 4. Didascalie Lezioni vs Appunti
-
-Distinguo i lead:
-- **Lezioni**: "Slide e presentazioni usate in aula, divise per argomento. Materiale di riferimento per seguire le lezioni e ripassare i concetti chiave."
-- **Appunti**: "Appunti sintetici, schemi e mappe concettuali per studiare e ripassare in autonomia, divisi per argomento."
-- **Esercitazioni** (nuovo): "Compiti, esercizi guidati e giochi didattici per mettere in pratica gli argomenti studiati."
-
-## 5. Sicurezza
-
-Due finding aperti — fix in un'unica migrazione:
-
-**a. CRITICO — `user_roles` privilege escalation** (qualsiasi utente loggato può inserirsi come admin):
-- aggiungo policy `INSERT/UPDATE/DELETE` su `user_roles` con `WITH CHECK / USING (has_role(auth.uid(), 'admin'))`
-- mantengo il trigger `handle_first_user_admin` (security definer, bypassa RLS) per il bootstrap del primo admin
-- revoco `INSERT/UPDATE/DELETE` su `public.user_roles` al role `authenticated` (anche con policy bloccante, la mancanza di grant è cintura+bretelle)
-
-**b. WARN — SECURITY DEFINER eseguibile da `authenticated`**: `has_role` deve restare SECURITY DEFINER (è quella che evita la ricorsione RLS), ma `REVOKE EXECUTE ... FROM PUBLIC, anon, authenticated` e poi `GRANT EXECUTE ... TO authenticated` solo se serve dal client. In realtà `has_role` viene usata solo dentro le policy RLS (lato server in PostgREST), quindi posso lasciarla con `EXECUTE` solo a `postgres, service_role` e revocarla a `anon, authenticated`. Le policy continuano a funzionare perché vengono valutate con i privilegi del DB owner.
-
-## 6. File toccati
-
-- `src/components/portfolio/Layout.tsx` (logo header rotondo)
-- `src/routes/index.tsx` (logo hero / card Esercitazioni)
-- `public/favicon.png` (rigenerato circolare)
-- `src/assets/logo.png` (sostituito se l'utente carica nuovo file)
-- nuova migrazione: `materials.topic`, fix `user_roles` + `has_role` grants
-- `src/components/portfolio/MaterialsList.tsx` (raggruppamento per topic + tasto preview)
-- `src/components/portfolio/MaterialPreview.tsx` (nuovo, modal preview)
-- `src/routes/didattica.esercitazioni.tsx` (nuovo)
-- `src/routes/didattica.tsx` (sotto-menu + 5 voci)
-- `src/routes/didattica.lezioni.tsx`, `didattica.appunti.tsx` (lead distinti)
-- `src/routes/admin.tsx` (campo topic + option "esercitazioni")
-- `src/lib/i18n.tsx` (chiavi nuove)
-
-## 7. Non incluso
-
-- Rinominare/spostare in massa i materiali già caricati: restano senza topic finché non li modifichi dall'admin (compaiono nel gruppo "Generale").
-- Preview di file Office in-browser (richiederebbe servizi esterni tipo Google Docs viewer, no per privacy + dipendenza esterna).
+## Fuori scope
+- Editor full-fledged dei materiali (rinomina titoli ecc.): non richiesto.
+- Generazione automatica miniature da PDF (richiederebbe un servizio server, non chiesto).
+- Modifica di `formulari` in `content.ts` (non più referenziato dopo la pulizia, ma lasciato in repo).
