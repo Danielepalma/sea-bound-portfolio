@@ -80,12 +80,9 @@ function AdminPage() {
     }
     let thumbPath: string | null = null;
     if (thumb) {
-      const tExt = thumb.name.split(".").pop()?.toLowerCase() ?? "png";
-      const tp = `thumbnails/${Date.now()}-${thumb.name.replace(/[^a-zA-Z0-9._-]/g, "_")}.${tExt === "png" || tExt === "jpg" || tExt === "jpeg" || tExt === "webp" || tExt === "gif" || tExt === "svg" || tExt === "avif" ? "" : "png"}`.replace(/\.$/, "");
-      const finalPath = `thumbnails/${Date.now()}-${thumb.name.replace(/[^a-zA-Z0-9._-]/g, "_")}`;
-      const { error: tErr } = await supabase.storage.from("materials").upload(finalPath, thumb);
-      if (!tErr) thumbPath = finalPath;
-      void tp;
+      const tp = `thumbnails/${Date.now()}-${thumb.name.replace(/[^a-zA-Z0-9._-]/g, "_")}`;
+      const { error: tErr } = await supabase.storage.from("materials").upload(tp, thumb);
+      if (!tErr) thumbPath = tp;
     }
     const { error: insErr } = await supabase.from("materials").insert({
       area, title_it: titleIt, title_en: titleEn || titleIt,
