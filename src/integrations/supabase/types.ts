@@ -25,6 +25,7 @@ export type Database = {
           meta_en: string
           meta_it: string
           sort_order: number
+          thumbnail_path: string | null
           title_en: string
           title_it: string
           topic: string | null
@@ -41,6 +42,7 @@ export type Database = {
           meta_en?: string
           meta_it?: string
           sort_order?: number
+          thumbnail_path?: string | null
           title_en: string
           title_it: string
           topic?: string | null
@@ -57,6 +59,7 @@ export type Database = {
           meta_en?: string
           meta_it?: string
           sort_order?: number
+          thumbnail_path?: string | null
           title_en?: string
           title_it?: string
           topic?: string | null
