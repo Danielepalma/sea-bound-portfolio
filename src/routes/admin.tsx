@@ -24,6 +24,7 @@ type Material = {
   sort_order: number;
   topic: string | null;
   topic_order: number;
+  thumbnail_path: string | null;
 };
 
 function publicUrl(path: string) {
@@ -43,6 +44,7 @@ function AdminPage() {
   const [metaEn, setMetaEn] = useState("");
   const [topic, setTopic] = useState("");
   const [file, setFile] = useState<File | null>(null);
+  const [thumb, setThumb] = useState<File | null>(null);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
 
@@ -76,24 +78,44 @@ function AdminPage() {
       setBusy(false);
       return setErr(upErr.message);
     }
+    let thumbPath: string | null = null;
+    if (thumb) {
+      const tp = `thumbnails/${Date.now()}-${thumb.name.replace(/[^a-zA-Z0-9._-]/g, "_")}`;
+      const { error: tErr } = await supabase.storage.from("materials").upload(tp, thumb);
+      if (!tErr) thumbPath = tp;
+    }
     const { error: insErr } = await supabase.from("materials").insert({
       area, title_it: titleIt, title_en: titleEn || titleIt,
       meta_it: metaIt, meta_en: metaEn || metaIt,
       icon, file_path: path, created_by: user?.id,
       topic: topic.trim() || null,
+      thumbnail_path: thumbPath,
     });
     setBusy(false);
     if (insErr) return setErr(insErr.message);
-    setTitleIt(""); setTitleEn(""); setMetaIt(""); setMetaEn(""); setFile(null);
+    setTitleIt(""); setTitleEn(""); setMetaIt(""); setMetaEn(""); setFile(null); setThumb(null);
     // keep `topic` and `area` so the admin can upload several items in the same topic in a row
     (document.getElementById("admin-file") as HTMLInputElement | null)!.value = "";
+    const thumbInput = document.getElementById("admin-thumb") as HTMLInputElement | null;
+    if (thumbInput) thumbInput.value = "";
     load();
   };
 
   const remove = async (m: Material) => {
     if (!confirm("Eliminare questo materiale?")) return;
-    await supabase.storage.from("materials").remove([m.file_path]);
+    const paths = [m.file_path, ...(m.thumbnail_path ? [m.thumbnail_path] : [])];
+    await supabase.storage.from("materials").remove(paths);
     await supabase.from("materials").delete().eq("id", m.id);
+    load();
+  };
+
+  const changeThumb = async (m: Material, f: File) => {
+    const path = `thumbnails/${Date.now()}-${f.name.replace(/[^a-zA-Z0-9._-]/g, "_")}`;
+    const { error: upErr } = await supabase.storage.from("materials").upload(path, f);
+    if (upErr) return alert(upErr.message);
+    if (m.thumbnail_path) await supabase.storage.from("materials").remove([m.thumbnail_path]);
+    const { error } = await supabase.from("materials").update({ thumbnail_path: path }).eq("id", m.id);
+    if (error) return alert(error.message);
     load();
   };
 
@@ -158,8 +180,10 @@ function AdminPage() {
         topic={topic}
         setTopic={setTopic}
         setFile={setFile}
+        setThumb={setThumb}
         submit={submit}
         remove={remove}
+        changeThumb={changeThumb}
         busy={busy}
         err={err}
         lang={lang}
@@ -183,8 +207,10 @@ type MaterialsTabProps = {
   topic: string;
   setTopic: (v: string) => void;
   setFile: (f: File | null) => void;
+  setThumb: (f: File | null) => void;
   submit: (e: FormEvent) => void;
   remove: (m: Material) => void;
+  changeThumb: (m: Material, f: File) => void;
   busy: boolean;
   err: string | null;
   lang: string;
@@ -192,7 +218,7 @@ type MaterialsTabProps = {
 
 function MaterialsTab({
   items, area, setArea, titleIt, setTitleIt, titleEn, setTitleEn,
-  metaIt, setMetaIt, metaEn, setMetaEn, topic, setTopic, setFile, submit, remove, busy, err, lang,
+  metaIt, setMetaIt, metaEn, setMetaEn, topic, setTopic, setFile, setThumb, submit, remove, changeThumb, busy, err, lang,
 }: MaterialsTabProps) {
   const existingTopics = Array.from(
     new Set(items.filter((m) => m.area === area && m.topic).map((m) => m.topic as string)),
@@ -217,6 +243,18 @@ function MaterialsTab({
           <label className="text-xs">
             <span className="block text-navy mb-1">File (PDF/Excel/…)</span>
             <input id="admin-file" type="file" required onChange={(e) => setFile(e.target.files?.[0] ?? null)} className="w-full text-xs" />
+          </label>
+          <label className="text-xs sm:col-span-2">
+            <span className="block text-navy mb-1">
+              {lang === "it" ? "Miniatura (immagine, opzionale)" : "Thumbnail (image, optional)"}
+            </span>
+            <input
+              id="admin-thumb"
+              type="file"
+              accept="image/*"
+              onChange={(e) => setThumb(e.target.files?.[0] ?? null)}
+              className="w-full text-xs"
+            />
           </label>
           <label className="text-xs sm:col-span-2">
             <span className="block text-navy mb-1">
@@ -267,9 +305,17 @@ function MaterialsTab({
       <div className="space-y-2">
         {items.map((m) => (
           <div key={m.id} className="nautical-card p-3 flex items-center gap-3 text-sm">
-            <span className="h-8 w-8 rounded-full bg-offwhite border border-gold/40 flex items-center justify-center shrink-0">
-              {m.icon === "xls" ? <FileSpreadsheet size={14} className="text-gold-700" /> : <FileText size={14} className="text-gold-700" />}
-            </span>
+            {m.thumbnail_path ? (
+              <img
+                src={publicUrl(m.thumbnail_path)}
+                alt=""
+                className="h-10 w-10 rounded object-cover border border-gold/40 shrink-0"
+              />
+            ) : (
+              <span className="h-8 w-8 rounded-full bg-offwhite border border-gold/40 flex items-center justify-center shrink-0">
+                {m.icon === "xls" ? <FileSpreadsheet size={14} className="text-gold-700" /> : <FileText size={14} className="text-gold-700" />}
+              </span>
+            )}
             <div className="flex-1 min-w-0">
               <p className="font-display text-navy text-sm truncate">{m.title_it}</p>
               <p className="text-[11px] text-ink-muted font-mono">
@@ -278,6 +324,19 @@ function MaterialsTab({
                 {m.meta_it ? ` · ${m.meta_it}` : ""}
               </p>
             </div>
+            <label className="text-[11px] text-gold-700 hover:text-navy cursor-pointer">
+              {lang === "it" ? "Miniatura" : "Thumb"}
+              <input
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={(e) => {
+                  const f = e.target.files?.[0];
+                  if (f) changeThumb(m, f);
+                  e.target.value = "";
+                }}
+              />
+            </label>
             <a href={publicUrl(m.file_path)} target="_blank" rel="noreferrer" className="text-xs text-gold-700 hover:text-navy">
               <ArrowUpRight size={14} />
             </a>

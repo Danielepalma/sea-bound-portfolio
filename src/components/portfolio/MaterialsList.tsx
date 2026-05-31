@@ -15,7 +15,10 @@ type Material = {
   file_path: string;
   topic: string | null;
   topic_order: number;
+  thumbnail_path: string | null;
 };
+
+const IMG_EXT = /\.(png|jpe?g|gif|webp|svg|avif)$/i;
 
 function MaterialIcon({ kind }: { kind: string }) {
   if (kind === "xls") return <FileSpreadsheet size={18} className="text-gold-700" />;
@@ -82,14 +85,30 @@ export function MaterialsList({ area }: { area: string }) {
                 const url = supabase.storage.from("materials").getPublicUrl(m.file_path).data.publicUrl;
                 const title = lang === "it" ? m.title_it : m.title_en;
                 const meta = lang === "it" ? m.meta_it : m.meta_en;
+                const thumbUrl = m.thumbnail_path
+                  ? supabase.storage.from("materials").getPublicUrl(m.thumbnail_path).data.publicUrl
+                  : IMG_EXT.test(m.file_path)
+                  ? url
+                  : null;
                 return (
                   <div
                     key={m.id}
-                    className="nautical-card p-4 flex items-start gap-3 group hover:-translate-y-0.5 transition-transform"
+                    className="nautical-card p-4 flex items-start gap-3 group hover:-translate-y-0.5 transition-transform min-w-0"
                   >
-                    <span className="h-9 w-9 shrink-0 rounded-full bg-offwhite border border-gold/50 flex items-center justify-center">
-                      <MaterialIcon kind={m.icon} />
-                    </span>
+                    {thumbUrl ? (
+                      <button
+                        type="button"
+                        onClick={() => setPreview({ url, title })}
+                        className="h-16 w-16 shrink-0 rounded-md overflow-hidden border border-gold/50 bg-offwhite"
+                        aria-label={t("preview_label")}
+                      >
+                        <img src={thumbUrl} alt="" loading="lazy" className="h-full w-full object-cover" />
+                      </button>
+                    ) : (
+                      <span className="h-9 w-9 shrink-0 rounded-full bg-offwhite border border-gold/50 flex items-center justify-center">
+                        <MaterialIcon kind={m.icon} />
+                      </span>
+                    )}
                     <div className="flex-1 min-w-0">
                       <p className="font-display text-sm text-navy leading-snug">{title}</p>
                       {meta && (

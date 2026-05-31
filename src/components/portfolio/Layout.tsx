@@ -59,12 +59,31 @@ export function PortfolioLayout({ children }: { children: ReactNode }) {
     <div className="min-h-screen">
       {/* HEADER */}
       <header className="bg-navy-gradient text-white relative">
-        <div className="max-w-6xl mx-auto px-6 py-10 md:py-14 flex flex-col md:flex-row items-center gap-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-10 md:py-14 flex flex-col md:flex-row items-center gap-5 md:gap-8">
+          <div className="w-full flex items-start justify-between md:hidden">
+            <Link to="/" className="block">
+              <img
+                src={logo}
+                alt="Daniele Palma Esposito — logo"
+                width={96}
+                height={96}
+                className="h-20 w-20 rounded-full object-cover bg-navy ring-2 ring-gold/60 shadow-[0_4px_18px_rgba(0,0,0,0.45)]"
+              />
+            </Link>
+            <button
+              onClick={() => setNavOpen((v) => !v)}
+              className="text-gold-light p-2 -mr-2"
+              aria-label="Toggle navigation"
+            >
+              {navOpen ? <X /> : <Menu />}
+            </button>
+          </div>
+
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
-            className="shrink-0"
+            className="shrink-0 hidden md:block"
           >
             <Link to="/" className="block">
               <img
@@ -72,7 +91,7 @@ export function PortfolioLayout({ children }: { children: ReactNode }) {
                 alt="Daniele Palma Esposito — logo"
                 width={192}
                 height={192}
-                className="h-36 w-36 md:h-44 md:w-44 rounded-full object-cover bg-navy ring-2 ring-gold/60 shadow-[0_4px_18px_rgba(0,0,0,0.45)]"
+                className="md:h-40 md:w-40 lg:h-44 lg:w-44 rounded-full object-cover bg-navy ring-2 ring-gold/60 shadow-[0_4px_18px_rgba(0,0,0,0.45)]"
               />
             </Link>
           </motion.div>
@@ -81,7 +100,7 @@ export function PortfolioLayout({ children }: { children: ReactNode }) {
             initial={{ opacity: 0, x: 16 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.05 }}
-            className="text-center md:text-left flex-1"
+            className="text-center md:text-left flex-1 min-w-0 w-full"
           >
             <div className="flex items-center justify-center md:justify-start gap-2 mb-4 flex-wrap">
               <span className="pill pill-gold inline-flex">
@@ -98,11 +117,11 @@ export function PortfolioLayout({ children }: { children: ReactNode }) {
               )}
             </div>
             <Link to="/" className="block">
-              <h1 className="font-display text-3xl md:text-5xl text-gold-light leading-tight hover:text-gold transition">
+              <h1 className="font-display text-2xl sm:text-3xl md:text-5xl text-gold-light leading-tight hover:text-gold transition break-words">
                 Daniele Palma Esposito
               </h1>
             </Link>
-            <p className="mt-3 text-xs md:text-sm uppercase tracking-wider-2 text-white/75 font-light">
+            <p className="mt-3 text-[11px] sm:text-xs md:text-sm uppercase tracking-wider-2 text-white/75 font-light">
               {t("role")}
             </p>
             <div className="mt-5 flex flex-wrap gap-2 justify-center md:justify-start text-xs text-white/70">
@@ -115,24 +134,16 @@ export function PortfolioLayout({ children }: { children: ReactNode }) {
               </span>
             </div>
           </motion.div>
-
-          <button
-            onClick={() => setNavOpen((v) => !v)}
-            className="md:hidden absolute top-4 right-4 text-gold-light"
-            aria-label="Toggle navigation"
-          >
-            {navOpen ? <X /> : <Menu />}
-          </button>
         </div>
         <div className="gold-rule" />
       </header>
 
       {/* LAYOUT */}
-      <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row gap-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row gap-6 md:gap-10">
         <aside
           className={`${
             navOpen ? "block" : "hidden"
-          } md:block md:sticky md:top-6 md:self-start md:w-56 shrink-0 md:py-10`}
+          } md:block md:sticky md:top-6 md:self-start md:w-56 shrink-0 pt-4 md:pt-0 md:py-10`}
         >
           <nav className="bg-navy text-white rounded-md p-4 border border-gold/30 shadow-soft">
             <p className="font-display text-[11px] uppercase tracking-wider-2 text-gold mb-3 px-2">
