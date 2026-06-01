@@ -1,0 +1,1 @@
+import{u as a,j as t,O as s}from"./index-CaY_CRbZ.js";import{S as n}from"./SubNav-D8rrJnyz.js";function r(){const{t:o}=a();return t.jsxs("div",{children:[t.jsx(n,{label:o("about_subnav"),items:[{to:"/chi-sono",label:o("nav_profile")},{to:"/chi-sono/progetti",label:o("nav_projects")},{to:"/chi-sono/formazione",label:o("nav_education")}]}),t.jsx(s,{})]})}export{r as component};

@@ -1,0 +1,420 @@
+{
+  "%23tanstack-start-plugin-adapters": {
+    "file": "assets/__23tanstack-start-plugin-adapters-Cwee5PKy.js",
+    "name": "__23tanstack-start-plugin-adapters",
+    "src": "%23tanstack-start-plugin-adapters",
+    "isDynamicEntry": true
+  },
+  "/home/runner/work/sea-bound-portfolio/sea-bound-portfolio/src/styles.css": {
+    "file": "assets/styles-ui2ppqFi.css",
+    "src": "/home/runner/work/sea-bound-portfolio/sea-bound-portfolio/src/styles.css"
+  },
+  "_MaterialsList-xnEC7h-T.js": {
+    "file": "assets/MaterialsList-xnEC7h-T.js",
+    "name": "MaterialsList",
+    "imports": [
+      "_server-D8kZ5U2V.js",
+      "_client-B8NoO8l8.js",
+      "_router-C1wlfgR9.js",
+      "_external-link-BahJmSA8.js",
+      "_download-3xV878aC.js",
+      "_file-spreadsheet-DOyNMqyj.js",
+      "_file-text-Ck35KvmI.js"
+    ]
+  },
+  "_SubNav-C1_bulK-.js": {
+    "file": "assets/SubNav-C1_bulK-.js",
+    "name": "SubNav",
+    "imports": [
+      "_server-D8kZ5U2V.js",
+      "_router-C1wlfgR9.js"
+    ]
+  },
+  "_calculator-D8lpS7xD.js": {
+    "file": "assets/calculator-D8lpS7xD.js",
+    "name": "calculator",
+    "imports": [
+      "_router-C1wlfgR9.js"
+    ]
+  },
+  "_client-B8NoO8l8.js": {
+    "file": "assets/client-B8NoO8l8.js",
+    "name": "client"
+  },
+  "_content-DzVdtPT7.js": {
+    "file": "assets/content-DzVdtPT7.js",
+    "name": "content",
+    "assets": [
+      "assets/trustee-BgKr3OXP.png",
+      "assets/overheat-B1TG45Pt.png",
+      "assets/undersec-BlVzkrJE.png",
+      "assets/flexship-BUd0_VAo.png",
+      "assets/aeneas-CdvE6gw7.png"
+    ]
+  },
+  "_download-3xV878aC.js": {
+    "file": "assets/download-3xV878aC.js",
+    "name": "download",
+    "imports": [
+      "_router-C1wlfgR9.js"
+    ]
+  },
+  "_external-link-BahJmSA8.js": {
+    "file": "assets/external-link-BahJmSA8.js",
+    "name": "external-link",
+    "imports": [
+      "_router-C1wlfgR9.js"
+    ]
+  },
+  "_file-spreadsheet-DOyNMqyj.js": {
+    "file": "assets/file-spreadsheet-DOyNMqyj.js",
+    "name": "file-spreadsheet",
+    "imports": [
+      "_router-C1wlfgR9.js"
+    ]
+  },
+  "_file-text-Ck35KvmI.js": {
+    "file": "assets/file-text-Ck35KvmI.js",
+    "name": "file-text",
+    "imports": [
+      "_router-C1wlfgR9.js"
+    ]
+  },
+  "_graduation-cap-zDKxE8aY.js": {
+    "file": "assets/graduation-cap-zDKxE8aY.js",
+    "name": "graduation-cap",
+    "imports": [
+      "_router-C1wlfgR9.js"
+    ]
+  },
+  "_linkedin-Drvfzoxx.js": {
+    "file": "assets/linkedin-Drvfzoxx.js",
+    "name": "linkedin",
+    "imports": [
+      "_router-C1wlfgR9.js"
+    ]
+  },
+  "_mail-BmUIzLpj.js": {
+    "file": "assets/mail-BmUIzLpj.js",
+    "name": "mail",
+    "imports": [
+      "_router-C1wlfgR9.js"
+    ]
+  },
+  "_router-C1wlfgR9.js": {
+    "file": "assets/router-C1wlfgR9.js",
+    "name": "router",
+    "isDynamicEntry": true,
+    "imports": [
+      "_server-D8kZ5U2V.js",
+      "_client-B8NoO8l8.js"
+    ],
+    "dynamicImports": [
+      "src/routes/login.tsx?tsr-split=component",
+      "src/routes/didattica.tsx?tsr-split=component",
+      "src/routes/cv.tsx?tsr-split=component",
+      "src/routes/contatti.tsx?tsr-split=component",
+      "src/routes/chi-sono.tsx?tsr-split=component",
+      "src/routes/admin.tsx?tsr-split=component",
+      "src/routes/index.tsx?tsr-split=component",
+      "src/routes/chi-sono.index.tsx?tsr-split=component",
+      "src/routes/didattica.lezioni.tsx?tsr-split=component",
+      "src/routes/didattica.formulari.tsx?tsr-split=component",
+      "src/routes/didattica.esercitazioni.tsx?tsr-split=component",
+      "src/routes/didattica.calcolatori.tsx?tsr-split=component",
+      "src/routes/didattica.appunti.tsx?tsr-split=component",
+      "src/routes/chi-sono.progetti.tsx?tsr-split=component",
+      "src/routes/chi-sono.formazione.tsx?tsr-split=component"
+    ],
+    "assets": [
+      "assets/logo-BvOrUg74.png",
+      "assets/styles-ui2ppqFi.css"
+    ]
+  },
+  "_server-D8kZ5U2V.js": {
+    "file": "assets/server-D8kZ5U2V.js",
+    "name": "server",
+    "isDynamicEntry": true,
+    "dynamicImports": [
+      "tanstack-start-manifest:v",
+      "_router-C1wlfgR9.js",
+      "src/start.ts",
+      "%23tanstack-start-plugin-adapters"
+    ]
+  },
+  "_worker-entry-CmXgy5Cy.js": {
+    "file": "assets/worker-entry-CmXgy5Cy.js",
+    "name": "worker-entry",
+    "dynamicImports": [
+      "_server-D8kZ5U2V.js"
+    ]
+  },
+  "src/assets/logo.png": {
+    "file": "assets/logo-BvOrUg74.png",
+    "src": "src/assets/logo.png"
+  },
+  "src/assets/profile.jpg": {
+    "file": "assets/profile-B6D0C8YM.jpg",
+    "src": "src/assets/profile.jpg"
+  },
+  "src/assets/projects/aeneas.png": {
+    "file": "assets/aeneas-CdvE6gw7.png",
+    "src": "src/assets/projects/aeneas.png"
+  },
+  "src/assets/projects/flexship.png": {
+    "file": "assets/flexship-BUd0_VAo.png",
+    "src": "src/assets/projects/flexship.png"
+  },
+  "src/assets/projects/overheat.png": {
+    "file": "assets/overheat-B1TG45Pt.png",
+    "src": "src/assets/projects/overheat.png"
+  },
+  "src/assets/projects/trustee.png": {
+    "file": "assets/trustee-BgKr3OXP.png",
+    "src": "src/assets/projects/trustee.png"
+  },
+  "src/assets/projects/undersec.png": {
+    "file": "assets/undersec-BlVzkrJE.png",
+    "src": "src/assets/projects/undersec.png"
+  },
+  "src/routes/admin.tsx?tsr-split=component": {
+    "file": "assets/admin-DEM9yo5G.js",
+    "name": "admin",
+    "src": "src/routes/admin.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_server-D8kZ5U2V.js",
+      "_router-C1wlfgR9.js",
+      "_client-B8NoO8l8.js",
+      "_file-spreadsheet-DOyNMqyj.js",
+      "_file-text-Ck35KvmI.js"
+    ]
+  },
+  "src/routes/chi-sono.formazione.tsx?tsr-split=component": {
+    "file": "assets/chi-sono.formazione-b5iIifwH.js",
+    "name": "chi-sono.formazione",
+    "src": "src/routes/chi-sono.formazione.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_server-D8kZ5U2V.js",
+      "_router-C1wlfgR9.js",
+      "_content-DzVdtPT7.js",
+      "_graduation-cap-zDKxE8aY.js",
+      "_client-B8NoO8l8.js"
+    ]
+  },
+  "src/routes/chi-sono.index.tsx?tsr-split=component": {
+    "file": "assets/chi-sono.index-C6haxAju.js",
+    "name": "chi-sono.index",
+    "src": "src/routes/chi-sono.index.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_server-D8kZ5U2V.js",
+      "_router-C1wlfgR9.js",
+      "_content-DzVdtPT7.js",
+      "_client-B8NoO8l8.js"
+    ],
+    "assets": [
+      "assets/profile-B6D0C8YM.jpg"
+    ]
+  },
+  "src/routes/chi-sono.progetti.tsx?tsr-split=component": {
+    "file": "assets/chi-sono.progetti-YNb5Ev4C.js",
+    "name": "chi-sono.progetti",
+    "src": "src/routes/chi-sono.progetti.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_server-D8kZ5U2V.js",
+      "_router-C1wlfgR9.js",
+      "_content-DzVdtPT7.js",
+      "_external-link-BahJmSA8.js",
+      "_client-B8NoO8l8.js"
+    ]
+  },
+  "src/routes/chi-sono.tsx?tsr-split=component": {
+    "file": "assets/chi-sono-HBDsR7D2.js",
+    "name": "chi-sono",
+    "src": "src/routes/chi-sono.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_server-D8kZ5U2V.js",
+      "_SubNav-C1_bulK-.js",
+      "_router-C1wlfgR9.js",
+      "_client-B8NoO8l8.js"
+    ]
+  },
+  "src/routes/contatti.tsx?tsr-split=component": {
+    "file": "assets/contatti-CesKqfcz.js",
+    "name": "contatti",
+    "src": "src/routes/contatti.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_server-D8kZ5U2V.js",
+      "_router-C1wlfgR9.js",
+      "_mail-BmUIzLpj.js",
+      "_linkedin-Drvfzoxx.js",
+      "_client-B8NoO8l8.js"
+    ]
+  },
+  "src/routes/cv.tsx?tsr-split=component": {
+    "file": "assets/cv-DVU7f638.js",
+    "name": "cv",
+    "src": "src/routes/cv.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_server-D8kZ5U2V.js",
+      "_router-C1wlfgR9.js",
+      "_content-DzVdtPT7.js",
+      "_download-3xV878aC.js",
+      "_mail-BmUIzLpj.js",
+      "_linkedin-Drvfzoxx.js",
+      "_external-link-BahJmSA8.js",
+      "_client-B8NoO8l8.js"
+    ]
+  },
+  "src/routes/didattica.appunti.tsx?tsr-split=component": {
+    "file": "assets/didattica.appunti-C9eejSeJ.js",
+    "name": "didattica.appunti",
+    "src": "src/routes/didattica.appunti.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_server-D8kZ5U2V.js",
+      "_router-C1wlfgR9.js",
+      "_MaterialsList-xnEC7h-T.js",
+      "_client-B8NoO8l8.js",
+      "_external-link-BahJmSA8.js",
+      "_download-3xV878aC.js",
+      "_file-spreadsheet-DOyNMqyj.js",
+      "_file-text-Ck35KvmI.js"
+    ]
+  },
+  "src/routes/didattica.calcolatori.tsx?tsr-split=component": {
+    "file": "assets/didattica.calcolatori-B7gSsPyP.js",
+    "name": "didattica.calcolatori",
+    "src": "src/routes/didattica.calcolatori.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_server-D8kZ5U2V.js",
+      "_router-C1wlfgR9.js",
+      "_MaterialsList-xnEC7h-T.js",
+      "_content-DzVdtPT7.js",
+      "_calculator-D8lpS7xD.js",
+      "_file-spreadsheet-DOyNMqyj.js",
+      "_client-B8NoO8l8.js",
+      "_external-link-BahJmSA8.js",
+      "_download-3xV878aC.js",
+      "_file-text-Ck35KvmI.js"
+    ]
+  },
+  "src/routes/didattica.esercitazioni.tsx?tsr-split=component": {
+    "file": "assets/didattica.esercitazioni-DQq80DEd.js",
+    "name": "didattica.esercitazioni",
+    "src": "src/routes/didattica.esercitazioni.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_server-D8kZ5U2V.js",
+      "_router-C1wlfgR9.js",
+      "_MaterialsList-xnEC7h-T.js",
+      "_client-B8NoO8l8.js",
+      "_external-link-BahJmSA8.js",
+      "_download-3xV878aC.js",
+      "_file-spreadsheet-DOyNMqyj.js",
+      "_file-text-Ck35KvmI.js"
+    ]
+  },
+  "src/routes/didattica.formulari.tsx?tsr-split=component": {
+    "file": "assets/didattica.formulari-EIbGjCJh.js",
+    "name": "didattica.formulari",
+    "src": "src/routes/didattica.formulari.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_server-D8kZ5U2V.js",
+      "_router-C1wlfgR9.js",
+      "_MaterialsList-xnEC7h-T.js",
+      "_client-B8NoO8l8.js",
+      "_external-link-BahJmSA8.js",
+      "_download-3xV878aC.js",
+      "_file-spreadsheet-DOyNMqyj.js",
+      "_file-text-Ck35KvmI.js"
+    ]
+  },
+  "src/routes/didattica.lezioni.tsx?tsr-split=component": {
+    "file": "assets/didattica.lezioni-ClGmRYhU.js",
+    "name": "didattica.lezioni",
+    "src": "src/routes/didattica.lezioni.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_server-D8kZ5U2V.js",
+      "_router-C1wlfgR9.js",
+      "_MaterialsList-xnEC7h-T.js",
+      "_client-B8NoO8l8.js",
+      "_external-link-BahJmSA8.js",
+      "_download-3xV878aC.js",
+      "_file-spreadsheet-DOyNMqyj.js",
+      "_file-text-Ck35KvmI.js"
+    ]
+  },
+  "src/routes/didattica.tsx?tsr-split=component": {
+    "file": "assets/didattica-BSkFkBIG.js",
+    "name": "didattica",
+    "src": "src/routes/didattica.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_server-D8kZ5U2V.js",
+      "_SubNav-C1_bulK-.js",
+      "_router-C1wlfgR9.js",
+      "_client-B8NoO8l8.js"
+    ]
+  },
+  "src/routes/index.tsx?tsr-split=component": {
+    "file": "assets/index-DcWAyKfG.js",
+    "name": "index",
+    "src": "src/routes/index.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_server-D8kZ5U2V.js",
+      "_router-C1wlfgR9.js",
+      "_file-text-Ck35KvmI.js",
+      "_calculator-D8lpS7xD.js",
+      "_graduation-cap-zDKxE8aY.js",
+      "_mail-BmUIzLpj.js",
+      "_client-B8NoO8l8.js"
+    ]
+  },
+  "src/routes/login.tsx?tsr-split=component": {
+    "file": "assets/login-DznAHYac.js",
+    "name": "login",
+    "src": "src/routes/login.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_server-D8kZ5U2V.js",
+      "_router-C1wlfgR9.js",
+      "_client-B8NoO8l8.js"
+    ]
+  },
+  "src/start.ts": {
+    "file": "assets/start-D1cunTbp.js",
+    "name": "start",
+    "src": "src/start.ts",
+    "isDynamicEntry": true,
+    "imports": [
+      "_worker-entry-CmXgy5Cy.js",
+      "_client-B8NoO8l8.js"
+    ]
+  },
+  "tanstack-start-manifest:v": {
+    "file": "assets/_tanstack-start-manifest_v-VINR_aAC.js",
+    "name": "_tanstack-start-manifest_v",
+    "src": "tanstack-start-manifest:v",
+    "isDynamicEntry": true
+  },
+  "virtual:cloudflare/worker-entry": {
+    "file": "index.js",
+    "name": "index",
+    "src": "virtual:cloudflare/worker-entry",
+    "isEntry": true,
+    "imports": [
+      "_worker-entry-CmXgy5Cy.js"
+    ]
+  }
+}
