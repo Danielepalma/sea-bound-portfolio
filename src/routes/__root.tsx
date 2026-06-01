@@ -13,6 +13,7 @@ import { LangProvider } from "@/lib/i18n";
 import { PortfolioLayout } from "@/components/portfolio/Layout";
 import { AuthProvider } from "@/hooks/use-auth";
 import { PageContentProvider } from "@/hooks/use-page-content";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -123,6 +124,7 @@ function RootComponent() {
             <PortfolioLayout>
               <Outlet />
             </PortfolioLayout>
+            <Toaster richColors position="top-right" />
           </PageContentProvider>
         </LangProvider>
       </AuthProvider>
