@@ -1,13 +1,282 @@
 <!doctype html>
-<html lang="en">
-  <head>
+<html lang="it">
+<head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sea Bound Portfolio</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+    <title>Sea Bound Portfolio | Daniele Palma</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+                'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+                sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .project-content p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            display: inline-block;
+            background: #f0f0f0;
+            color: #667eea;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .about {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .about h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .about p {
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .tech-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .tech-list h3 {
+            grid-column: 1 / -1;
+            color: #667eea;
+        }
+
+        .tech-item {
+            background: #f5f5f5;
+            padding: 0.8rem;
+            border-radius: 8px;
+            text-align: center;
+            color: #666;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        .social-links {
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: opacity 0.3s;
+        }
+
+        .social-links a:hover {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .projects {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌊 Sea Bound Portfolio</h1>
+            <p>Daniele Palma - Sviluppatore Web Full Stack</p>
+        </header>
+
+        <section class="about">
+            <h2>Chi sono</h2>
+            <p>
+                Sono uno sviluppatore web appassionato di tecnologie moderne e di soluzioni innovative.
+                Specializzato in React, TypeScript e architetture scalabili, costruisco applicazioni web performanti
+                e user-friendly.
+            </p>
+            <p>
+                La mia passione per il codice pulito e l'ottimizzazione mi guida nel creare esperienze digitali eccezionali.
+            </p>
+
+            <div class="tech-list">
+                <h3>Tecnologie Principali</h3>
+                <div class="tech-item">React</div>
+                <div class="tech-item">TypeScript</div>
+                <div class="tech-item">Vite</div>
+                <div class="tech-item">Tailwind CSS</div>
+                <div class="tech-item">Node.js</div>
+                <div class="tech-item">Supabase</div>
+            </div>
+        </section>
+
+        <h2 style="text-align: center; color: white; margin: 2rem 0;">Progetti in Evidenza</h2>
+
+        <div class="projects">
+            <div class="project-card">
+                <img src="./aeneas.png" alt="Aeneas" class="project-image" />
+                <div class="project-content">
+                    <h3>⚓ Aeneas</h3>
+                    <p>Un progetto affascinante legato al mondo marittimo e alle avventure in mare.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">TypeScript</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="./flexship.png" alt="Flexship" class="project-image" />
+                <div class="project-content">
+                    <h3>🚢 Flexship</h3>
+                    <p>Soluzioni innovative per il shipping e la logistica marittima moderna.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Vite</span>
+                        <span class="tech-tag">Tailwind</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="./overheat.png" alt="Overheat" class="project-image" />
+                <div class="project-content">
+                    <h3>🔥 Overheat</h3>
+                    <p>Un'applicazione con tematiche marittime che affronta sfide tecniche complesse.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">CSS</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="./undersec.png" alt="Undersec" class="project-image" />
+                <div class="project-content">
+                    <h3>🌊 Undersec</h3>
+                    <p>Esplorazioni sottomarine digitali e scoperte nel mondo web profondo.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">React Router</span>
+                        <span class="tech-tag">Supabase</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>📧 <strong>Sea Bound Portfolio</strong></p>
+            <p>Sviluppato con ❤️ e qualche onda di mare 🌊</p>
+            <div class="social-links">
+                <a href="https://github.com/Danielepalma" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+            <p style="margin-top: 1.5rem; font-size: 0.9rem; opacity: 0.8;">
+                © 2026 Daniele Palma. Tutti i diritti riservati.
+            </p>
+        </footer>
+    </div>
+</body>
 </html>
